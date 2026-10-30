@@ -1,0 +1,76 @@
+{{> head}}
+<body class="bg-slate-100 text-slate-800">
+<div class="min-h-screen {{#if (eq currentUser.role 'admin')}}bg-slate-50 lg:flex{{else if (eq currentUser.role 'event_organizer')}}bg-slate-50 lg:flex{{else if (eq currentUser.role 'judge')}}bg-slate-50 lg:flex{{else if (eq currentUser.role 'tabulator')}}bg-slate-50 lg:flex{{else}}flex{{/if}}">
+  {{#if (eq currentUser.role "admin")}}{{> admin-sidebar}}{{/if}}
+  {{#if (eq currentUser.role "event_organizer")}}{{> organizer-sidebar}}{{/if}}
+  {{#if (eq currentUser.role "judge")}}{{> judge-sidebar}}{{/if}}
+  {{#if (eq currentUser.role "tabulator")}}{{> tabulator-sidebar}}{{/if}}
+  {{#if (eq currentUser.role "admin")}}
+  <div id="sidebarOverlay" class="hidden fixed inset-0 z-40 bg-slate-950/40 lg:hidden" onclick="toggleSidebar('adminSidebar')"></div>
+  <main class="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+    <header class="mb-8 flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <button type="button" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm lg:hidden" onclick="toggleSidebar('adminSidebar')">Menu</button>
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">EventFair / System administration</p>
+          <p class="mt-1 truncate text-sm font-semibold text-slate-900">{{currentUser.name}}</p>
+        </div>
+      </div>
+      <div class="hidden items-center gap-2 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800 sm:flex">
+        <span class="h-2 w-2 rounded-full bg-emerald-500"></span>
+        Administrator access
+      </div>
+    </header>
+  {{else if (eq currentUser.role "event_organizer")}}
+  <div id="organizerSidebarOverlay" class="hidden fixed inset-0 z-40 bg-slate-950/40 lg:hidden" onclick="toggleSidebar('organizerSidebar','organizerSidebarOverlay')"></div>
+  <main class="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+    <header class="mb-8 flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <button type="button" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm lg:hidden" onclick="toggleSidebar('organizerSidebar','organizerSidebarOverlay')">Menu</button>
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">EventFair / Competition management</p>
+          <p class="mt-1 truncate text-sm font-semibold text-slate-900">{{currentUser.name}}</p>
+        </div>
+      </div>
+      <div class="hidden items-center gap-2 rounded-full border border-blue-200 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800 sm:flex">
+        <span class="h-2 w-2 rounded-full bg-blue-500"></span>
+        Event Organizer
+      </div>
+    </header>
+  {{else if (eq currentUser.role "judge")}}
+  <div id="judgeSidebarOverlay" class="hidden fixed inset-0 z-40 bg-slate-950/40 lg:hidden" onclick="toggleSidebar('judgeSidebar','judgeSidebarOverlay')"></div>
+  <main class="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+    <header class="mb-8 flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <button type="button" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm lg:hidden" onclick="toggleSidebar('judgeSidebar','judgeSidebarOverlay')">Menu</button>
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">EventFair / Judge workspace</p>
+          <p class="mt-1 truncate text-sm font-semibold text-slate-900">{{currentUser.name}}</p>
+        </div>
+      </div>
+      <div class="hidden items-center gap-2 rounded-full border border-violet-200 bg-violet-50 px-3 py-1.5 text-xs font-semibold text-violet-800 sm:flex">
+        <span class="h-2 w-2 rounded-full bg-violet-500"></span>
+        Confidential judging
+      </div>
+    </header>
+  {{else if (eq currentUser.role "tabulator")}}
+  <div id="tabulatorSidebarOverlay" class="hidden fixed inset-0 z-40 bg-slate-950/40 lg:hidden" onclick="toggleSidebar('tabulatorSidebar','tabulatorSidebarOverlay')"></div>
+  <main class="min-w-0 flex-1 p-4 sm:p-6 lg:p-8">
+    <header class="mb-8 flex items-center justify-between gap-4 border-b border-slate-200 pb-5">
+      <div class="flex min-w-0 items-center gap-3">
+        <button type="button" class="rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm font-semibold text-slate-700 shadow-sm lg:hidden" onclick="toggleSidebar('tabulatorSidebar','tabulatorSidebarOverlay')">Menu</button>
+        <div class="min-w-0">
+          <p class="text-xs font-semibold uppercase tracking-[0.16em] text-slate-500">EventFair / Results verification</p>
+          <p class="mt-1 truncate text-sm font-semibold text-slate-900">{{currentUser.name}}</p>
+        </div>
+      </div>
+      <div class="hidden items-center gap-2 rounded-full border border-amber-200 bg-amber-50 px-3 py-1.5 text-xs font-semibold text-amber-800 sm:flex">
+        <span class="h-2 w-2 rounded-full bg-amber-500"></span>
+        Confidential tabulation
+      </div>
+    </header>
+  {{else}}
+  <main class="flex-1 p-8">
+  {{/if}}
+    {{#if success_msg}}<div class="mb-4 rounded-lg bg-emerald-50 text-emerald-800 px-4 py-3">{{success_msg}}</div>{{/if}}
+    {{#if error_msg}}<div class="mb-4 rounded-lg bg-rose-50 text-rose-800 px-4 py-3">{{error_msg}}</div>{{/if}}

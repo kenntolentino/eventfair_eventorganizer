@@ -1,0 +1,208 @@
+{{> app-start}}
+<section class="relative mb-8 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-fair-900 to-fair-800 px-6 py-8 text-white shadow-xl shadow-slate-900/10 sm:px-9 sm:py-10">
+  <div class="pointer-events-none absolute -right-10 -top-20 h-72 w-72 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -right-2 -top-12 h-56 w-56 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -bottom-28 right-40 h-64 w-64 rounded-full bg-fair-500/20 blur-3xl"></div>
+  <div class="relative flex flex-col justify-between gap-8 xl:flex-row xl:items-end">
+    <div class="max-w-2xl">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold tracking-wide text-blue-100">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        ADMINISTRATOR OVERVIEW
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Good day, {{currentUser.name}}</h1>
+      <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">Your EventFair control center. Monitor platform activity, keep event records organized, and manage access from one place.</p>
+    </div>
+    <div class="flex flex-wrap gap-3">
+      <a href="/admin/reports" class="rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">Reports &amp; analytics</a>
+      <a href="/admin/users" class="rounded-xl bg-fair-gold px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-black/10 transition hover:bg-amber-300">Manage accounts <span aria-hidden="true">&rarr;</span></a>
+    </div>
+  </div>
+  <div class="relative mt-8 flex flex-wrap gap-x-6 gap-y-2 border-t border-white/10 pt-5 text-xs font-medium text-slate-300">
+    <a class="transition hover:text-white" href="/admin/homepage">Website management</a>
+    <a class="transition hover:text-white" href="/admin/logs">Security &amp; audit logs</a>
+    <a class="transition hover:text-white" href="/admin/maintenance">System health</a>
+  </div>
+</section>
+
+<section class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-4" aria-label="System summary">
+  <article class="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">User accounts</p>
+        <p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{stats.users}}</p>
+      </div>
+      <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m16 0v-2a4 4 0 0 0-3-3.87M14 3.13a4 4 0 0 1 0 7.75M14 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+      <p class="text-xs text-slate-500"><span class="font-semibold text-emerald-700">{{stats.activeUsers}}</span> active <span class="mx-1 text-slate-300">/</span> {{stats.inactiveUsers}} inactive</p>
+      <a href="/admin/users" aria-label="Manage user accounts" class="text-sm font-semibold text-fair-700 transition group-hover:translate-x-0.5">&rarr;</a>
+    </div>
+  </article>
+  <article class="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">Managed events</p>
+        <p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{stats.events}}</p>
+      </div>
+      <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-violet-50 text-violet-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+      <p class="text-xs text-slate-500"><span class="font-semibold text-violet-700">{{stats.activeEvents}}</span> active <span class="mx-1 text-slate-300">/</span> {{stats.publishedEvents}} published</p>
+      <a href="/admin/events" aria-label="Manage events" class="text-sm font-semibold text-fair-700 transition group-hover:translate-x-0.5">&rarr;</a>
+    </div>
+  </article>
+  <article class="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">System settings</p>
+        <p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{stats.settingsCount}}</p>
+      </div>
+      <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4l3 2m6-2a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+      <p class="text-xs text-slate-500">Platform configuration</p>
+      <a href="/admin/settings" aria-label="Review system settings" class="text-sm font-semibold text-fair-700 transition group-hover:translate-x-0.5">&rarr;</a>
+    </div>
+  </article>
+  <article class="group rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">Role groups</p>
+        <p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{roles.length}}</p>
+      </div>
+      <span class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 flex items-center justify-between border-t border-slate-100 pt-3">
+      <p class="text-xs text-slate-500">Permission categories</p>
+      <a href="/admin/users" aria-label="Manage roles and access" class="text-sm font-semibold text-fair-700 transition group-hover:translate-x-0.5">&rarr;</a>
+    </div>
+  </article>
+</section>
+
+<section class="mb-8 grid grid-cols-1 gap-5 xl:grid-cols-5" aria-label="System analytics">
+  <article class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6 xl:col-span-2">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-blue-700">Account distribution</p>
+        <h2 class="mt-1 text-lg font-bold text-slate-950">Users by role</h2>
+        <p class="mt-1 text-sm text-slate-500">How access is shared across {{stats.users}} accounts.</p>
+      </div>
+      <a href="/admin/users" class="whitespace-nowrap rounded-lg px-2 py-1 text-xs font-semibold text-fair-700 transition hover:bg-blue-50">View accounts &rarr;</a>
+    </div>
+    <div class="mt-7 space-y-5" role="img" aria-label="Horizontal bar chart showing account counts and percentages by role">
+      {{#each roles}}
+      <div>
+        <div class="mb-2 flex items-center justify-between gap-3 text-sm">
+          <span class="font-semibold text-slate-700">{{label}}</span>
+          <span class="tabular-nums text-slate-600">{{count}} <span class="text-slate-400">({{share}}%)</span></span>
+        </div>
+        <div class="h-3 overflow-hidden rounded-full bg-slate-100">
+          <div class="h-full rounded-full {{color}} transition-all duration-500" data-chart-width="{{share}}"></div>
+        </div>
+      </div>
+      {{else}}
+      <p class="rounded-xl bg-slate-50 px-4 py-8 text-center text-sm text-slate-500">No user accounts are available to chart.</p>
+      {{/each}}
+    </div>
+    <div class="mt-6 flex items-center gap-2 border-t border-slate-100 pt-4 text-xs text-slate-500">
+      <span class="h-2 w-2 rounded-full bg-blue-600"></span>
+      Role share of all registered users
+    </div>
+  </article>
+
+  <article class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6 xl:col-span-3">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-violet-700">Competition portfolio</p>
+        <h2 class="mt-1 text-lg font-bold text-slate-950">Events by status</h2>
+        <p class="mt-1 text-sm text-slate-500">Lifecycle breakdown for {{stats.events}} system-wide events.</p>
+      </div>
+      <a href="/admin/events" class="whitespace-nowrap rounded-lg px-2 py-1 text-xs font-semibold text-fair-700 transition hover:bg-violet-50">View events &rarr;</a>
+    </div>
+    <div class="mt-6 grid grid-cols-4 gap-3 sm:grid-cols-7" role="img" aria-label="Column chart showing event counts by status">
+      {{#each eventStatusChart}}
+      <div class="flex min-w-0 flex-col items-center">
+        <span class="mb-2 text-xs font-semibold tabular-nums text-slate-600">{{count}}</span>
+        <div class="flex h-28 w-full items-end justify-center rounded-t-lg bg-slate-50 px-2">
+          <div class="w-full max-w-10 min-h-[3px] rounded-t-md {{color}} transition-all duration-500" data-chart-height="{{share}}" title="{{count}} {{label}} events ({{share}}%)"></div>
+        </div>
+        <span class="mt-2 text-center text-[10px] font-medium leading-4 text-slate-500 sm:text-xs">{{label}}</span>
+        <span class="text-[10px] tabular-nums text-slate-400">{{share}}%</span>
+      </div>
+      {{/each}}
+    </div>
+    <div class="mt-5 border-t border-slate-100 pt-4 text-xs text-slate-500">Percentage of all events in each lifecycle status</div>
+  </article>
+</section>
+
+<section class="mb-8 grid grid-cols-1 gap-5 xl:grid-cols-5">
+  <article class="rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm sm:p-6 xl:col-span-2">
+    <div class="flex items-start justify-between gap-3">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-amber-700">Accountability</p>
+        <h2 class="mt-1 text-lg font-bold text-slate-950">Recent activity</h2>
+        <p class="mt-1 text-sm text-slate-500">The latest actions recorded on the platform.</p>
+      </div>
+      <a href="/admin/logs" class="whitespace-nowrap rounded-lg px-2 py-1 text-xs font-semibold text-fair-700 transition hover:bg-amber-50">Audit log &rarr;</a>
+    </div>
+    <div class="mt-5">
+      {{#each logs}}
+      <div class="relative flex gap-3 pb-5 last:pb-0">
+        <div class="relative flex w-3 flex-shrink-0 justify-center">
+          <span class="absolute bottom-0 top-2 w-px bg-slate-200 last:hidden"></span>
+          <span class="relative mt-1.5 h-2.5 w-2.5 rounded-full border-2 border-white bg-fair-gold ring-1 ring-amber-200"></span>
+        </div>
+        <div class="min-w-0 flex-1">
+          <div class="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+            <p class="text-sm font-semibold text-slate-800">{{action}} <span class="font-normal text-slate-500">· {{module}}</span></p>
+            <time class="text-[11px] text-slate-400">{{date createdAt}}</time>
+          </div>
+          <p class="mt-1 text-xs text-slate-500">{{#if actor}}{{actor.name}}{{else}}System{{/if}}</p>
+          {{#if details}}<p class="mt-1 break-words text-xs leading-5 text-slate-500">{{details}}</p>{{/if}}
+        </div>
+      </div>
+      {{else}}
+      <p class="rounded-xl bg-slate-50 px-4 py-8 text-center text-sm text-slate-500">No activity has been recorded yet.</p>
+      {{/each}}
+    </div>
+  </article>
+
+  <article class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm xl:col-span-3">
+    <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-5 sm:px-6">
+      <div>
+        <p class="text-xs font-bold uppercase tracking-[0.14em] text-fair-700">Event oversight</p>
+        <h2 class="mt-1 text-lg font-bold text-slate-950">Recently created events</h2>
+        <p class="mt-1 text-sm text-slate-500">Latest event records and their organizers.</p>
+      </div>
+      <a href="/admin/events" class="rounded-lg px-2 py-1 text-xs font-semibold text-fair-700 transition hover:bg-blue-50">Manage events &rarr;</a>
+    </div>
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-left text-sm">
+        <thead class="bg-slate-50/80 text-[10px] uppercase tracking-[0.12em] text-slate-500">
+          <tr><th class="px-5 py-3 font-bold sm:px-6">Event</th><th class="px-5 py-3 font-bold sm:px-6">Organizer</th><th class="px-5 py-3 font-bold sm:px-6">Schedule</th><th class="px-5 py-3 font-bold sm:px-6">Status</th></tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+          {{#each recentEvents}}
+          <tr class="transition hover:bg-slate-50/70">
+            <td class="px-5 py-4 sm:px-6"><p class="font-semibold text-slate-800">{{name}}</p><p class="mt-0.5 text-xs text-slate-500">{{venue}}</p></td>
+            <td class="px-5 py-4 text-slate-600 sm:px-6">{{#if organizer}}{{organizer.name}}{{else}}Unassigned{{/if}}</td>
+            <td class="whitespace-nowrap px-5 py-4 text-xs text-slate-600 sm:px-6">{{#if startDate}}{{startDate}}{{else}}Date not set{{/if}} {{#if endDate}}– {{endDate}}{{/if}}</td>
+            <td class="px-5 py-4 sm:px-6"><span class="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold capitalize text-slate-700">{{status}}</span></td>
+          </tr>
+          {{else}}
+          <tr><td class="px-6 py-10 text-center text-sm text-slate-500" colspan="4">No event records yet. Create an event to begin coordinating the system.</td></tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </article>
+</section>
+{{> app-end}}

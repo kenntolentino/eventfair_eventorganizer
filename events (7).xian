@@ -1,0 +1,75 @@
+{{> app-start}}
+<section class="mb-7 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+  <div>
+    <p class="text-sm font-semibold text-fair-700">EVENT PLANNING</p>
+    <h1 class="mt-2 text-3xl font-bold tracking-tight text-slate-950">Event setup</h1>
+    <p class="mt-2 max-w-2xl text-sm leading-6 text-slate-600">Create competition records, publish event instructions, and configure the approved scoring formula.</p>
+  </div>
+  <button type="button" onclick="openModal('createModal')" class="rounded-xl bg-fair-800 px-4 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-fair-700">Create event</button>
+</section>
+<section class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><p class="text-sm text-slate-500">Events in your workspace</p><p class="mt-2 text-2xl font-bold text-slate-950">{{stats.total}}</p></article>
+  <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"><p class="text-sm text-slate-500">Matching events</p><p class="mt-2 text-2xl font-bold text-slate-950">{{stats.shown}}</p></article>
+</section>
+<section class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+  <form method="GET" action="/organizer/events" class="flex flex-col gap-3 border-b border-slate-100 p-4 sm:flex-row sm:items-center">
+    <label class="sr-only" for="eventSearch">Search events</label>
+    <input id="eventSearch" name="q" value="{{filters.q}}" placeholder="Search event, venue, or description" class="min-w-0 flex-1 rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none placeholder:text-slate-400 focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+    <label class="sr-only" for="eventStatus">Filter by status</label>
+    <select id="eventStatus" name="status" class="rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-700 outline-none focus:border-fair-500">
+      <option value="">All statuses</option>
+      {{#each eventStatuses}}<option value="{{this}}" {{#if (eq ../filters.status this)}}selected{{/if}}>{{this}}</option>{{/each}}
+    </select>
+    <div class="flex gap-2"><button class="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white hover:bg-slate-700">Filter</button><a href="/organizer/events" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Reset</a></div>
+  </form>
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-left text-sm">
+      <thead class="bg-slate-50 text-xs uppercase tracking-wide text-slate-500"><tr><th class="px-5 py-3.5 font-semibold">Competition</th><th class="px-5 py-3.5 font-semibold">Schedule &amp; venue</th><th class="px-5 py-3.5 font-semibold">Scoring formula</th><th class="px-5 py-3.5 font-semibold">Status</th><th class="px-5 py-3.5 text-right font-semibold">Actions</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        {{#each events}}
+        <tr class="hover:bg-slate-50/70">
+          <td class="max-w-sm px-5 py-4"><p class="font-semibold text-slate-900">{{name}}</p><p class="mt-1 truncate text-xs text-slate-500">{{#if description}}{{description}}{{else}}No description{{/if}}</p></td>
+          <td class="px-5 py-4"><p class="whitespace-nowrap font-medium text-slate-700">{{#if startDate}}{{startDate}}{{else}}Date not set{{/if}} {{#if endDate}}– {{endDate}}{{/if}}</p><p class="mt-1 text-xs text-slate-500">{{#if venue}}{{venue}}{{else}}Venue not set{{/if}}</p></td>
+          <td class="px-5 py-4 text-slate-600">{{#if (eq scoringFormula 'average_weighted')}}Average weighted{{else}}Sum weighted{{/if}}<p class="mt-1 text-xs text-slate-500">{{#if allowScoreRevision}}Revisions allowed{{else}}Scores locked on submit{{/if}}</p></td>
+          <td class="px-5 py-4"><span class="rounded-full bg-slate-100 px-2.5 py-1 text-xs font-semibold capitalize text-slate-700">{{status}}</span></td>
+          <td class="whitespace-nowrap px-5 py-4 text-right">
+            {{#if (eq status 'published')}}
+            <span class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-400">Read-only</span>
+            {{else if (eq status 'tabulated')}}
+            <span class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-400">Read-only</span>
+            {{else if (eq status 'archived')}}
+            <span class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-slate-400">Read-only</span>
+            {{else}}
+            <button type="button" class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-fair-700 hover:bg-blue-50" onclick="openEdit('editModal','editForm','{{jsonAttr this}}','/organizer/events/{{id}}')">Edit</button>
+            <button type="button" class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-rose-700 hover:bg-rose-50" onclick="openDelete('deleteModal','deleteForm','/organizer/events/{{id}}/delete','{{jsonAttr name}}')">Delete</button>
+            {{/if}}
+          </td>
+        </tr>
+        {{else}}
+        <tr><td class="px-5 py-14 text-center" colspan="5"><p class="font-semibold text-slate-700">No matching events</p><p class="mt-1 text-sm text-slate-500">Adjust the filters or create a competition to begin.</p></td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="createModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4" role="dialog" aria-modal="true" aria-labelledby="createEventTitle">
+  <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+    <h2 id="createEventTitle" class="text-xl font-semibold text-slate-950">Create competition event</h2>
+    <p class="mb-5 mt-1 text-sm text-slate-500">Set event details, judging instructions, and scoring policy.</p>
+    <form method="POST" action="/organizer/events">{{> organizer-event-fields}}
+      <div class="mt-5 flex justify-end gap-3 border-t border-slate-100 pt-4"><button type="button" onclick="closeModal('createModal')" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Cancel</button><button class="rounded-xl bg-fair-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-fair-700">Create event</button></div>
+    </form>
+  </div>
+</div>
+<div id="editModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4" role="dialog" aria-modal="true" aria-labelledby="editEventTitle">
+  <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white p-6 shadow-2xl">
+    <h2 id="editEventTitle" class="text-xl font-semibold text-slate-950">Update competition event</h2>
+    <p class="mb-5 mt-1 text-sm text-slate-500">Keep event records accurate for contestants and assigned officials.</p>
+    <form id="editForm" method="POST">{{> organizer-event-fields}}
+      <div class="mt-5 flex justify-end gap-3 border-t border-slate-100 pt-4"><button type="button" onclick="closeModal('editModal')" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Cancel</button><button class="rounded-xl bg-fair-800 px-4 py-2.5 text-sm font-semibold text-white hover:bg-fair-700">Save changes</button></div>
+    </form>
+  </div>
+</div>
+{{> delete-modal}}
+{{> app-end}}

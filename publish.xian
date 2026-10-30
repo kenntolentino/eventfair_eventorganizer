@@ -1,0 +1,95 @@
+{{> app-start}}
+<section class="relative mb-7 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#0b1429] via-[#102947] to-[#193e65] px-6 py-7 text-white shadow-xl shadow-blue-950/10 sm:px-8 sm:py-8">
+  <div class="pointer-events-none absolute -right-16 -top-28 h-72 w-72 rounded-full border border-white/[0.08]"></div>
+  <div class="pointer-events-none absolute -right-4 -top-16 h-48 w-48 rounded-full border border-white/[0.08]"></div>
+  <div class="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-100"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Final approval</span>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Approve &amp; publish results</h1>
+      <p class="mt-2 max-w-xl text-sm leading-6 text-blue-100/80">Review event readiness and verified tabulation records. Publishing releases the finalized results for the event.</p>
+    </div>
+    <span class="inline-flex items-center gap-2 rounded-xl border border-white/15 bg-white/[0.08] px-4 py-3 text-sm font-semibold text-blue-50"><svg class="h-4 w-4 text-emerald-300" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Verified results only</span>
+  </div>
+</section>
+
+<section class="mb-6 overflow-hidden rounded-2xl border border-amber-200/80 bg-gradient-to-r from-amber-50 to-white shadow-sm">
+  <div class="flex items-start gap-4 p-5 sm:p-6">
+    <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-amber-100 text-amber-800 ring-1 ring-amber-200"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 2.8 20h18.4L12 3Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 3h.01"/></svg></span>
+    <div><p class="text-sm font-bold text-amber-950">Before publishing</p><p class="mt-1 text-sm leading-6 text-amber-900/90">Confirm that judging is complete, the tabulator has generated verified rankings, and the report matches the approved competition rules. Published results are final.</p></div>
+  </div>
+</section>
+
+<section class="mb-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex items-center gap-3 border-b border-slate-100 px-5 py-4 sm:px-6">
+    <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h17"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 15 4-4 3 2 5-6"/></svg></span>
+    <div><h2 class="text-base font-bold text-slate-950">Publication readiness</h2><p class="mt-0.5 text-xs text-slate-500 sm:text-sm">Results can be approved only after tabulation has generated verified rankings.</p></div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-[1050px] w-full text-left text-sm">
+      <thead class="bg-slate-50/90 text-[10px] uppercase tracking-[0.12em] text-slate-500"><tr><th class="px-5 py-4 font-bold">Event</th><th class="px-5 py-4 font-bold">Judging setup</th><th class="px-5 py-4 font-bold">Submissions</th><th class="px-5 py-4 font-bold">Verified results</th><th class="px-5 py-4 font-bold">Status</th><th class="px-5 py-4 text-right font-bold">Approval</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        {{#each events}}
+        <tr class="transition hover:bg-blue-50/40">
+          <td class="px-5 py-4"><div class="flex items-start gap-3"><span class="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-indigo-100 text-blue-700 ring-1 ring-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span><div><p class="font-semibold text-slate-900">{{name}}</p><p class="mt-1 text-xs text-slate-500">{{#if venue}}{{venue}}{{else}}Venue not set{{/if}}</p></div></div></td>
+          <td class="px-5 py-4"><div class="flex flex-wrap gap-1.5"><span class="inline-flex rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-800">{{judgeCount}} judges</span><span class="inline-flex rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1 text-[11px] font-semibold text-violet-800">{{tabulatorCount}} tabulators</span></div><p class="mt-2 text-xs text-slate-500">{{contestantCount}} contestants <span class="mx-1 text-slate-300">·</span> {{criterionCount}} criteria</p></td>
+          <td class="px-5 py-4"><p class="font-bold tabular-nums text-slate-900">{{submittedSheets}} <span class="font-normal text-slate-400">/ {{requiredSheets}}</span></p><p class="mt-1 text-[10px] font-medium uppercase tracking-wide text-slate-400">Submitted / expected</p></td>
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-2 rounded-lg border {{#if verifiedResults}}border-emerald-200 bg-emerald-50 text-emerald-800{{else}}border-slate-200 bg-slate-50 text-slate-600{{/if}} px-2.5 py-1.5 text-xs font-bold tabular-nums"><span class="h-1.5 w-1.5 rounded-full {{#if verifiedResults}}bg-emerald-500{{else}}bg-slate-400{{/if}}"></span>{{verifiedResults}}</span><p class="mt-1 text-[10px] font-medium uppercase tracking-wide text-slate-400">Rankings verified</p></td>
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 rounded-full border {{#if (eq status 'published')}}border-emerald-200 bg-emerald-50 text-emerald-800{{else if ready}}border-blue-200 bg-blue-50 text-blue-800{{else}}border-amber-200 bg-amber-50 text-amber-800{{/if}} px-2.5 py-1 text-[11px] font-semibold capitalize"><span class="h-1.5 w-1.5 rounded-full {{#if (eq status 'published')}}bg-emerald-500{{else if ready}}bg-blue-500{{else}}bg-amber-500{{/if}}"></span>{{status}}</span>{{#if (eq status 'published')}}<p class="mt-1.5 text-[10px] text-slate-500">{{date resultsPublishedAt}}</p>{{/if}}</td>
+          <td class="whitespace-nowrap px-5 py-4 text-right">
+            {{#if ready}}
+            <button type="button" onclick="openConfirmAction('publishModal','publishForm','/organizer/publish/{{id}}','{{jsonAttr name}}','Publish results')" class="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-3.5 py-2.5 text-xs font-semibold text-white shadow-sm transition hover:bg-emerald-800"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Approve &amp; publish</button>
+            {{else if (eq status 'published')}}
+            <span class="inline-flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-3 py-1.5 text-xs font-semibold text-emerald-800"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Published</span>
+            {{else}}
+            <span class="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400"><span class="h-1.5 w-1.5 rounded-full bg-amber-400"></span>Awaiting verified tabulation</span>
+            {{/if}}
+          </td>
+        </tr>
+        {{else}}
+        <tr><td class="px-5 py-16 text-center" colspan="6"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span><p class="mt-4 font-semibold text-slate-800">No events available for publication</p><p class="mt-1 text-sm text-slate-500">Events will appear here when they are ready for review.</p></td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="publishModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/50 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="publishConfirmTitle">
+  <div class="w-full max-w-md overflow-hidden rounded-2xl border border-white/60 bg-white shadow-2xl">
+    <div class="p-6">
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700 ring-1 ring-amber-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 2.8 20h18.4L12 3Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 3h.01"/></svg></div>
+      <h2 id="publishConfirmTitle" class="mt-4 text-lg font-bold text-slate-950">Publish official results?</h2>
+      <p id="confirmActionMessage" class="mt-2 text-sm leading-6 text-slate-600">This action releases verified results to users.</p>
+    </div>
+    <form id="publishForm" method="POST" class="flex justify-end gap-3 border-t border-slate-100 bg-slate-50/70 px-6 py-4">
+      <button type="button" onclick="closeModal('publishModal')" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Cancel</button>
+      <button id="confirmActionButton" class="inline-flex items-center gap-2 rounded-xl bg-emerald-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-800"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg>Publish results</button>
+    </form>
+  </div>
+</div>
+
+<section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex items-center gap-3 border-b border-slate-100 px-5 py-4 sm:px-6">
+    <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-700 ring-1 ring-violet-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M9 13h6m-6 4h6"/></svg></span>
+    <div><h2 class="text-base font-bold text-slate-950">Tabulation result preview</h2><p class="mt-0.5 text-xs text-slate-500 sm:text-sm">Review ranked contestant scores before approving publication.</p></div>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-[900px] w-full text-left text-sm">
+      <thead class="bg-slate-50/90 text-[10px] uppercase tracking-[0.12em] text-slate-500"><tr><th class="px-5 py-4 font-bold">Event</th><th class="px-5 py-4 font-bold">Rank</th><th class="px-5 py-4 font-bold">Contestant</th><th class="px-5 py-4 text-right font-bold">Weighted total</th><th class="px-5 py-4 text-right font-bold">Average</th><th class="px-5 py-4 font-bold">Verification</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        {{#each results}}
+        <tr class="transition hover:bg-violet-50/30">
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-2 text-xs font-medium text-slate-700"><span class="h-2 w-2 rounded-full bg-violet-400"></span>{{#if Event}}{{Event.name}}{{else}}—{{/if}}</span></td>
+          <td class="px-5 py-4"><span class="inline-flex h-8 min-w-8 items-center justify-center rounded-lg border {{#if (eq rank 1)}}border-amber-200 bg-amber-50 text-amber-800{{else}}border-slate-200 bg-slate-50 text-slate-700{{/if}} px-2 text-xs font-bold tabular-nums">#{{rank}}</span></td>
+          <td class="px-5 py-4 font-semibold text-slate-900">{{contestantName}}</td>
+          <td class="px-5 py-4 text-right font-medium tabular-nums text-slate-700">{{totalWeightedScore}}</td>
+          <td class="px-5 py-4 text-right font-bold tabular-nums text-slate-900">{{averageScore}}</td>
+          <td class="px-5 py-4"><span class="inline-flex items-center gap-1.5 rounded-full border {{#if (eq status 'verified')}}border-emerald-200 bg-emerald-50 text-emerald-800{{else if (eq status 'published')}}border-blue-200 bg-blue-50 text-blue-800{{else}}border-slate-200 bg-slate-50 text-slate-700{{/if}} px-2.5 py-1 text-[10px] font-semibold capitalize"><span class="h-1.5 w-1.5 rounded-full {{#if (eq status 'verified')}}bg-emerald-500{{else if (eq status 'published')}}bg-blue-500{{else}}bg-slate-400{{/if}}"></span>{{status}}</span></td>
+        </tr>
+        {{else}}
+        <tr><td class="px-5 py-16 text-center" colspan="6"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-50 text-violet-700"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M9 13h6"/></svg></span><p class="mt-4 font-semibold text-slate-800">No tabulated rankings yet</p><p class="mt-1 text-sm text-slate-500">Verified contestant results will appear here for review.</p></td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+{{> app-end}}

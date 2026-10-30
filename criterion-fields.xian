@@ -1,0 +1,15 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Competition event</label>
+<select name="eventId" required class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">{{#each events}}<option value="{{id}}">{{name}}</option>{{/each}}</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Category (optional)</label>
+<select name="categoryId" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500"><option value="">General · applies to all categories</option>{{#each categories}}<option value="{{id}}">{{#if Event}}{{Event.name}} · {{/if}}{{name}}</option>{{/each}}</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Criterion name</label>
+<input name="name" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Evaluation guideline</label>
+<textarea name="description" rows="3" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" placeholder="Explain what judges should assess"></textarea>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Weight (%)</label><input type="number" step="0.01" min="0.01" max="100" name="weightPercentage" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /><p class="mt-1 text-xs text-slate-500">Effective rubric total must not exceed 100%.</p></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Minimum score</label><input type="number" step="0.01" name="minScore" value="0" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Maximum score</label><input type="number" step="0.01" name="maxScore" value="100" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+</div>
+<label class="mb-1 mt-4 block text-sm font-semibold text-slate-700">Display order</label>
+<input type="number" name="displayOrder" min="1" value="1" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />

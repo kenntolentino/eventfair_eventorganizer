@@ -1,0 +1,4 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Report title</label>
+<input name="title" maxlength="255" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-amber-500" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Tabulator notes <span class="font-normal text-slate-400">(optional)</span></label>
+<textarea name="summary" rows="4" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm leading-6 outline-none focus:border-amber-500" placeholder="Add notes for this report snapshot."></textarea>

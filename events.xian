@@ -1,0 +1,141 @@
+{{> app-start}}
+<section class="relative mb-7 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-fair-900 to-fair-800 px-6 py-7 text-white shadow-xl shadow-slate-900/10 sm:px-8 sm:py-9">
+  <div class="pointer-events-none absolute -right-10 -top-20 h-64 w-64 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -right-2 -top-12 h-48 w-48 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -bottom-28 right-40 h-56 w-56 rounded-full bg-fair-500/20 blur-3xl"></div>
+  <div class="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <div class="max-w-2xl">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold tracking-wide text-blue-100">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        SYSTEM-WIDE OVERSIGHT
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Event records</h1>
+      <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">Review events across EventFair, check organizer assignments, and keep every competition record up to date.</p>
+    </div>
+    <button type="button" onclick="openModal('createModal')" class="inline-flex items-center justify-center gap-2 rounded-xl bg-fair-gold px-4 py-2.5 text-sm font-bold text-slate-950 shadow-lg shadow-black/10 transition hover:bg-amber-300">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>
+      Add event record
+    </button>
+  </div>
+</section>
+
+<section class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2" aria-label="Event summary">
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">Total system events</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-slate-950">{{stats.total}}</p>
+      </div>
+      <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-50 text-blue-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-500">All event records across the platform</div>
+  </article>
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <p class="text-sm font-medium text-slate-500">Matching records</p>
+        <p class="mt-2 text-3xl font-bold tracking-tight text-slate-950">{{stats.shown}}</p>
+      </div>
+      <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-violet-50 text-violet-700" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-4-4"/></svg>
+      </span>
+    </div>
+    <div class="mt-4 border-t border-slate-100 pt-3 text-xs text-slate-500">Events currently shown by your filters</div>
+  </article>
+</section>
+
+<section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-5 sm:px-6">
+    <div>
+      <p class="text-xs font-bold uppercase tracking-[0.14em] text-fair-700">Event directory</p>
+      <h2 class="mt-1 text-lg font-bold text-slate-950">All event records</h2>
+      <p class="mt-1 text-sm text-slate-500">Search, filter, and maintain event details.</p>
+    </div>
+    <span class="rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold tabular-nums text-slate-600">{{stats.shown}} shown</span>
+  </div>
+  <form method="GET" action="/admin/events" class="grid gap-3 border-b border-slate-100 bg-slate-50/60 p-4 sm:grid-cols-[minmax(0,1fr)_190px_auto] sm:items-center sm:px-5">
+    <label class="relative block min-w-0">
+      <span class="sr-only">Search events</span>
+      <svg class="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-4-4"/></svg>
+      <input id="eventSearch" name="q" value="{{filters.q}}" placeholder="Search by name, venue, or description" class="w-full rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-3.5 text-sm outline-none transition placeholder:text-slate-400 focus:border-fair-500 focus:ring-4 focus:ring-fair-500/10" />
+    </label>
+    <label>
+      <span class="sr-only">Filter by status</span>
+      <select id="eventStatusFilter" name="status" class="w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm text-slate-700 outline-none transition focus:border-fair-500 focus:ring-4 focus:ring-fair-500/10">
+        <option value="">All statuses</option>
+        {{#each eventStatuses}}<option value="{{this}}" {{#if (eq ../filters.status this)}}selected{{/if}}>{{this}}</option>{{/each}}
+      </select>
+    </label>
+    <div class="flex gap-2">
+      <button class="rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-700">Filter</button>
+      <a href="/admin/events" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Reset</a>
+    </div>
+  </form>
+  <div class="overflow-x-auto">
+    <table class="min-w-full text-left text-sm">
+      <thead class="bg-slate-50/80 text-[10px] uppercase tracking-[0.12em] text-slate-500">
+        <tr><th class="px-5 py-3.5 font-bold sm:px-6">Event</th><th class="px-5 py-3.5 font-bold sm:px-6">Organizer</th><th class="px-5 py-3.5 font-bold sm:px-6">Schedule</th><th class="px-5 py-3.5 font-bold sm:px-6">Status</th><th class="px-5 py-3.5 text-right font-bold sm:px-6">Actions</th></tr>
+      </thead>
+      <tbody class="divide-y divide-slate-100">
+        {{#each events}}
+        <tr class="transition hover:bg-blue-50/30">
+          <td class="px-5 py-4 sm:px-6"><p class="font-semibold text-slate-900">{{name}}</p><p class="mt-1 text-xs text-slate-500">{{#if venue}}{{venue}}{{else}}Venue not set{{/if}}</p></td>
+          <td class="px-5 py-4 sm:px-6"><p class="font-medium text-slate-700">{{#if organizer}}{{organizer.name}}{{else}}Unassigned{{/if}}</p>{{#if organizer}}<p class="mt-1 text-xs text-slate-500">{{organizer.email}}</p>{{/if}}</td>
+          <td class="whitespace-nowrap px-5 py-4 text-xs text-slate-600 sm:px-6">{{#if startDate}}{{startDate}}{{else}}Date not set{{/if}} {{#if endDate}}– {{endDate}}{{/if}}</td>
+          <td class="px-5 py-4 sm:px-6"><span class="inline-flex rounded-full bg-slate-100 px-2.5 py-1 text-[11px] font-semibold capitalize text-slate-700">{{status}}</span></td>
+          <td class="whitespace-nowrap px-5 py-4 text-right sm:px-6">
+            <button type="button" class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-fair-700 transition hover:bg-blue-50" onclick="openEdit('editModal','editForm','{{jsonAttr this}}','/admin/events/{{id}}')">Edit</button>
+            <button type="button" class="rounded-lg px-2.5 py-1.5 text-xs font-semibold text-rose-700 transition hover:bg-rose-50" onclick="openDelete('deleteModal','deleteForm','/admin/events/{{id}}/delete','{{jsonAttr name}}')">Archive</button>
+          </td>
+        </tr>
+        {{else}}
+        <tr><td class="px-5 py-14 text-center" colspan="5"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-100 text-slate-400"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="m20 20-4-4"/></svg></span><p class="mt-3 font-semibold text-slate-700">No matching event records</p><p class="mt-1 text-sm text-slate-500">Adjust your filters or add an event record.</p></td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<div id="createModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="createEventTitle">
+  <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/60 bg-white p-6 shadow-2xl sm:p-8">
+    <div class="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
+      <div><p class="text-xs font-bold uppercase tracking-[0.14em] text-fair-700">New event</p><h2 id="createEventTitle" class="mt-1 text-xl font-bold text-slate-950">Create event record</h2><p class="mt-1 text-sm text-slate-500">Assign an active organizer and configure the event details.</p></div>
+      <button type="button" onclick="closeModal('createModal')" aria-label="Close dialog" class="rounded-lg px-2.5 py-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">&times;</button>
+    </div>
+    <form method="POST" action="/admin/events">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700">Event organizer</label>
+      <select name="createdBy" required class="mb-5 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-fair-500 focus:ring-4 focus:ring-fair-500/10">
+        {{#each organizers}}<option value="{{id}}">{{name}} ({{email}})</option>{{/each}}
+      </select>
+      {{> event-fields}}
+      <div class="mt-6 flex justify-end gap-3 border-t border-slate-100 pt-5">
+        <button type="button" onclick="closeModal('createModal')" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Cancel</button>
+        <button class="rounded-xl bg-fair-800 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-fair-700">Create event</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="editModal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="editEventTitle">
+  <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl border border-white/60 bg-white p-6 shadow-2xl sm:p-8">
+    <div class="mb-6 flex items-start justify-between gap-4 border-b border-slate-100 pb-5">
+      <div><p class="text-xs font-bold uppercase tracking-[0.14em] text-fair-700">Event details</p><h2 id="editEventTitle" class="mt-1 text-xl font-bold text-slate-950">Update event record</h2><p class="mt-1 text-sm text-slate-500">Maintain system event details and organizer assignment.</p></div>
+      <button type="button" onclick="closeModal('editModal')" aria-label="Close dialog" class="rounded-lg px-2.5 py-1.5 text-slate-400 transition hover:bg-slate-100 hover:text-slate-700">&times;</button>
+    </div>
+    <form id="editForm" method="POST">
+      <label class="mb-1.5 block text-sm font-semibold text-slate-700">Event organizer</label>
+      <select name="createdBy" required class="mb-5 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none transition focus:border-fair-500 focus:ring-4 focus:ring-fair-500/10">
+        {{#each organizers}}<option value="{{id}}">{{name}} ({{email}})</option>{{/each}}
+      </select>
+      {{> event-fields}}
+      <div class="mt-6 flex justify-end gap-3 border-t border-slate-100 pt-5">
+        <button type="button" onclick="closeModal('editModal')" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Cancel</button>
+        <button class="rounded-xl bg-fair-800 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-fair-700">Save changes</button>
+      </div>
+    </form>
+  </div>
+</div>
+{{> delete-modal}}
+{{> app-end}}

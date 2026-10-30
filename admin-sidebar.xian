@@ -1,0 +1,135 @@
+<style>
+  #adminSidebar { background: linear-gradient(145deg, #0b1429 0%, #102947 55%, #193e65 100%); border-color: rgba(255, 255, 255, 0.12); color: #eaf3ff; }
+  #adminSidebar > div:first-child { background-color: transparent; }
+  #adminSidebar > div:nth-of-type(2) { border-color: rgba(255, 255, 255, 0.12); background: transparent; }
+  #adminSidebar nav p { color: #a9c5e3; }
+  #adminSidebar nav a:not([aria-current="page"]) { border-color: transparent; color: #dbeafe; }
+  #adminSidebar nav a:not([aria-current="page"]):hover { border-color: rgba(255, 255, 255, 0.14); background-color: rgba(255, 255, 255, 0.1); color: #fff; }
+  #adminSidebar nav a[aria-current="page"] { border-color: #fff; background-color: #fff; color: #102947; box-shadow: 0 6px 16px rgba(8, 30, 55, 0.18); }
+  #adminSidebar nav a[aria-current="page"] span:first-child { background-color: #dbeafe; color: #102947; }
+  #adminSidebar > div:last-child { border-color: rgba(255, 255, 255, 0.12); background-color: transparent; }
+  #adminSidebar > div:last-child p:first-child { color: #fff; }
+  #adminSidebar > div:last-child p:nth-child(2) { color: #a9c5e3; }
+  #adminSidebar > div:last-child button { border-color: rgba(255, 255, 255, 0.2); background-color: transparent; color: #fff; }
+  #adminSidebar > div:last-child button svg,
+  #adminSidebar > div:last-child button span:last-child { color: #bfdbfe; }
+  #adminSidebar > div:last-child button:hover { border-color: #fecdd3; background-color: rgba(244, 63, 94, 0.14); color: #fff; }
+</style>
+<aside id="adminSidebar" class="hidden fixed inset-y-0 left-0 z-50 flex w-72 min-h-screen flex-col overflow-hidden border-r border-blue-800 text-blue-50 shadow-2xl lg:sticky lg:top-0 lg:flex lg:h-screen lg:w-64 lg:flex-shrink-0 lg:shadow-none">
+  <div class="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-blue-100/70 opacity-0 blur-3xl"></div>
+  <div class="relative border-b border-slate-200/80 bg-gradient-to-br from-fair-900 via-fair-900 to-fair-800 px-5 pb-5 pt-6">
+    <div class="flex items-center justify-between">
+      <a href="/admin/dashboard" class="group flex items-center gap-3">
+        {{#if content.brand.logo}}
+        <img src="{{content.brand.logo}}" alt="{{content.brand.name}} logo" class="h-11 w-11 rounded-2xl bg-white object-contain p-1.5 shadow-lg shadow-black/10 transition group-hover:scale-105" />
+        {{else}}
+        <span class="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/15 bg-white/10 text-sm font-black tracking-tight text-fair-gold shadow-lg shadow-black/10 backdrop-blur transition group-hover:scale-105">EF</span>
+        {{/if}}
+        <span>
+          <span class="block text-base font-bold tracking-wide text-white">{{content.brand.name}}</span>
+          <span class="mt-0.5 block text-[10px] font-semibold uppercase tracking-[0.16em] text-blue-100/60">Admin workspace</span>
+        </span>
+      </a>
+      <button type="button" aria-label="Close navigation" class="rounded-lg p-2 text-blue-100/70 transition hover:bg-white/10 hover:text-white lg:hidden" onclick="toggleSidebar('adminSidebar')">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path stroke-linecap="round" d="m6 6 12 12M18 6 6 18"/></svg>
+      </button>
+    </div>
+    <div class="mt-6 flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.07] p-3 shadow-sm backdrop-blur">
+      <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-white/10 text-blue-100 ring-1 ring-white/10" aria-hidden="true">
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="8" r="3.25"/><path stroke-linecap="round" stroke-linejoin="round" d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg>
+      </span>
+      <div class="min-w-0">
+        <p class="text-[9px] font-bold uppercase tracking-[0.16em] text-blue-100/50">Signed in as</p>
+        <p class="mt-0.5 text-xs font-semibold text-blue-100/75">Administrator</p>
+        <p class="mt-0.5 truncate text-sm font-semibold text-white">{{currentUser.name}}</p>
+      </div>
+      <span class="ml-auto h-2 w-2 flex-shrink-0 rounded-full bg-emerald-500 ring-4 ring-emerald-100" title="Signed in"></span>
+    </div>
+  </div>
+
+  <nav aria-label="Admin navigation" class="relative flex-1 space-y-6 overflow-y-auto px-3 py-5">
+    <div>
+      <p class="mb-2 px-3 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">Overview</p>
+      <a href="/admin/dashboard" {{#if (eq nav 'dashboard')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2.5 text-sm font-medium transition {{#if (eq nav 'dashboard')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg transition {{#if (eq nav 'dashboard')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}">
+          <svg class="h-[18px] w-[18px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="3" width="7" height="8" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="15" width="7" height="6" rx="1.5"/></svg>
+        </span>
+        <span class="flex-1">Dashboard</span>{{#if (eq nav 'dashboard')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+      </a>
+    </div>
+
+    <div>
+      <p class="mb-2 px-3 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">Administration</p>
+      <div class="space-y-1">
+        <a href="/admin/users" {{#if (eq nav 'users')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'users')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'users')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m16 0v-2a4 4 0 0 0-3-3.87M14 3.13a4 4 0 0 1 0 7.75M14 7a4 4 0 1 1-8 0 4 4 0 0 1 8 0Z"/></svg></span>
+          <span class="flex-1">User management</span>{{#if (eq nav 'users')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/events" {{#if (eq nav 'events')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'events')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'events')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span>
+          <span class="flex-1">Event management</span>{{#if (eq nav 'events')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/scoring-configuration" {{#if (eq nav 'scoring')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'scoring')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'scoring')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m12 3 2.2 2.2 3.1-.2 1.1 2.9 2.7 1.6-.8 3 1.4 2.7-2.3 2.1-.3 3.1-3 .8-2 2.4-2.8-1.2-2.8 1.2-2-2.4-3-.8-.3-3.1L3 15.9l1.4-2.7-.8-3 2.7-1.6 1.1-2.9 3.1.2L12 3Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          <span class="flex-1">Scoring configuration</span>{{#if (eq nav 'scoring')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/homepage" {{#if (eq nav 'homepage')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'homepage')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'homepage')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1v-9.5Z"/></svg></span>
+          <span class="flex-1">Website management</span>{{#if (eq nav 'homepage')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/settings" {{#if (eq nav 'settings')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'settings')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'settings')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.6a8 8 0 0 1-1.7 1l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.7-1l-1.7.6-1.4-2.4 1.4-1.1a7 7 0 0 1 0-2l-1.4-1.1 1.4-2.4 1.7.6a8 8 0 0 1 1.7-1l.3-1.8h2.8l.3 1.8a8 8 0 0 1 1.7 1l1.7-.6 1.4 2.4-1.4 1.1a7 7 0 0 1 0 1.9Z"/></svg></span>
+          <span class="flex-1">System settings</span>{{#if (eq nav 'settings')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+      </div>
+    </div>
+
+    <div>
+      <p class="mb-2 px-3 text-[9px] font-bold uppercase tracking-[0.18em] text-slate-400">Oversight</p>
+      <div class="space-y-1">
+        <a href="/admin/logs" {{#if (eq nav 'logs')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'logs')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'logs')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4.5 7v5c0 4.8 3.2 7.7 7.5 9 4.3-1.3 7.5-4.2 7.5-9V7L12 3Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 3h4"/></svg></span>
+          <span class="flex-1">Security &amp; audit logs</span>{{#if (eq nav 'logs')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/reports" {{#if (eq nav 'reports')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'reports')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'reports')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h17"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 15 4-4 3 2 5-6"/></svg></span>
+          <span class="flex-1">Reports &amp; analytics</span>{{#if (eq nav 'reports')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+        <a href="/admin/maintenance" {{#if (eq nav 'maintenance')}}aria-current="page"{{/if}} class="group flex items-center gap-3 rounded-xl border px-3 py-2 text-[13px] font-medium transition {{#if (eq nav 'maintenance')}}border-fair-900 bg-fair-900 text-white shadow-md shadow-fair-900/10{{else}}border-transparent text-slate-600 hover:border-slate-200 hover:bg-white hover:text-slate-950 hover:shadow-sm{{/if}}">
+          <span class="flex h-8 w-8 items-center justify-center rounded-lg {{#if (eq nav 'maintenance')}}bg-white/10 text-fair-gold{{else}}text-slate-400 group-hover:text-fair-800{{/if}}"><svg class="h-[17px] w-[17px]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a5 5 0 0 0-6.9 6.9L3 18l3 3 4.8-4.8a5 5 0 0 0 6.9-6.9l-3 3-3-3 3-3Z"/></svg></span>
+          <span class="flex-1">Health &amp; maintenance</span>{{#if (eq nav 'maintenance')}}<span class="h-1.5 w-1.5 rounded-full bg-fair-gold shadow-[0_0_8px_rgba(201,162,39,0.65)]"></span>{{/if}}
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="relative border-t border-blue-100 bg-[#eaf1f8] px-4 py-4">
+    <div class="mb-3 px-2">
+      <p class="truncate text-xs font-semibold text-slate-700">{{currentUser.email}}</p>
+      <p class="mt-1 text-[10px] font-medium uppercase tracking-[0.12em] text-slate-400">Administrator account</p>
+    </div>
+    <button type="button" onclick="openModal('signOutModal')" class="group flex w-full items-center justify-between rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:border-rose-200 hover:bg-rose-50 hover:text-rose-800">
+      <span class="flex items-center gap-2.5"><svg class="h-4 w-4 text-slate-400 transition group-hover:text-rose-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5m5 5H3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"/></svg>Sign out</span>
+      <span class="text-slate-400 transition group-hover:translate-x-0.5 group-hover:text-rose-600" aria-hidden="true">&rarr;</span>
+    </button>
+  </div>
+</aside>
+
+<div id="signOutModal" class="hidden fixed inset-0 z-[70] flex items-center justify-center bg-slate-950/60 p-4 backdrop-blur-sm" role="dialog" aria-modal="true" aria-labelledby="signOutTitle" onclick="closeModal('signOutModal')">
+  <div class="w-full max-w-md overflow-hidden rounded-3xl border border-white/60 bg-white shadow-2xl" onclick="event.stopPropagation()">
+    <div class="p-6 sm:p-7">
+      <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-50 text-rose-700">
+        <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5m5 5H3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"/></svg>
+      </div>
+      <h2 id="signOutTitle" class="mt-4 text-lg font-bold text-slate-950">Sign out of EventFair?</h2>
+      <p class="mt-2 text-sm leading-6 text-slate-600">You will be signed out of your administrator account and returned to the sign-in page.</p>
+    </div>
+    <div class="flex justify-end gap-3 border-t border-slate-100 bg-slate-50/70 px-6 py-4 sm:px-7">
+      <button type="button" onclick="closeModal('signOutModal')" class="rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50">Cancel</button>
+      <a href="/logout" class="inline-flex items-center gap-2 rounded-xl bg-rose-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-rose-800">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M10 17l5-5-5-5m5 5H3"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 3h6a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-6"/></svg>
+        Sign out
+      </a>
+    </div>
+  </div>
+</div>

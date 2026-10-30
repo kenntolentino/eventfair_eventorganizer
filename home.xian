@@ -1,0 +1,285 @@
+{{> head}}
+<body class="bg-white text-slate-800 antialiased selection:bg-amber-200 selection:text-slate-950">
+  {{#if previewMode}}
+  <div class="border-b border-amber-300 bg-amber-100 px-4 py-2 text-center text-sm font-semibold text-amber-950">Homepage preview — these changes are not published yet.</div>
+  {{/if}}
+
+  <!-- Navigation -->
+  <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/90 shadow-sm shadow-slate-900/[0.03] backdrop-blur-xl">
+    <nav class="mx-auto flex h-[4.75rem] max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8" aria-label="Main">
+      <a href="/" class="flex items-center gap-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-fair-900" aria-label="{{content.brand.name}} home">
+        {{#if content.brand.logo}}
+        <img src="{{content.brand.logo}}" alt="" class="h-10 w-10 rounded-xl object-contain" />
+        {{else}}
+        <span class="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-fair-800 to-fair-900 text-lg font-bold text-fair-gold shadow-md shadow-fair-900/15">E</span>
+        {{/if}}
+        <span class="leading-tight">
+          <span class="block text-[15px] font-bold tracking-tight text-slate-950">{{content.brand.name}}</span>
+          <span class="block text-xs text-slate-500">{{content.brand.subtitle}}</span>
+        </span>
+      </a>
+
+      <div class="hidden items-center gap-1 rounded-full border border-slate-200/80 bg-slate-50/80 p-1 text-sm font-medium text-slate-600 md:flex">
+        <a href="#platform" class="rounded-full px-4 py-2 transition hover:bg-white hover:text-fair-900 hover:shadow-sm">Platform</a>
+        {{#if homepageVideos}}<a href="#trailers" class="rounded-full px-4 py-2 transition hover:bg-white hover:text-fair-900 hover:shadow-sm">Trailers</a>{{/if}}
+        {{#if content.sections.roles.visible}}<a href="#roles" class="rounded-full px-4 py-2 transition hover:bg-white hover:text-fair-900 hover:shadow-sm">Who it's for</a>{{/if}}
+        {{#if content.sections.process.visible}}<a href="#process" class="rounded-full px-4 py-2 transition hover:bg-white hover:text-fair-900 hover:shadow-sm">How it works</a>{{/if}}
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="{{content.brand.signInHref}}" class="hidden rounded-full px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-100 sm:inline-flex">{{content.brand.signInLabel}}</a>
+        <a href="{{content.brand.actionHref}}" class="rounded-full bg-fair-900 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-fair-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-fair-900">{{content.brand.actionLabel}}</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="platform" class="relative isolate overflow-hidden bg-gradient-to-br from-slate-950 via-fair-900 to-[#214d74] text-white">
+      {{#if content.hero.image}}<img src="{{content.hero.image}}" alt="" class="pointer-events-none absolute inset-0 -z-10 h-full w-full object-cover opacity-[0.12] mix-blend-screen" />{{/if}}
+      <div class="pointer-events-none absolute -right-36 -top-32 -z-10 h-[34rem] w-[34rem] rounded-full bg-blue-400/20 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-48 left-1/4 -z-10 h-[30rem] w-[30rem] rounded-full bg-amber-400/10 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 -z-10 opacity-[0.07]" style="background-image: radial-gradient(rgba(255,255,255,.7) .7px, transparent .7px); background-size: 22px 22px;"></div>
+
+      <div class="mx-auto grid max-w-7xl items-center gap-14 px-5 py-16 sm:px-6 sm:py-20 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16 lg:px-8 lg:py-24">
+        <div class="max-w-2xl">
+          <p class="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-semibold text-blue-50 shadow-sm backdrop-blur">
+            <span class="h-2 w-2 rounded-full bg-fair-gold ring-4 ring-amber-300/20"></span>
+            {{content.hero.eyebrow}}
+          </p>
+
+          <h1 class="mt-7 text-4xl font-semibold leading-[1.08] tracking-[-0.04em] text-white sm:text-5xl lg:text-[4rem]">
+            {{content.hero.titleLead}}
+            <span class="text-fair-gold">{{content.hero.titleAccent}}</span>
+          </h1>
+
+          <p class="mt-6 max-w-xl text-lg leading-8 text-blue-100/80 sm:text-xl">
+            {{content.hero.description}}
+          </p>
+
+          <div class="mt-9 flex flex-wrap items-center gap-3">
+            <a href="{{content.hero.primaryHref}}" class="inline-flex items-center gap-2 rounded-full bg-fair-gold px-6 py-3.5 text-sm font-bold text-slate-950 shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">
+              {{content.hero.primaryLabel}}
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </a>
+            <a href="{{content.hero.secondaryHref}}" class="rounded-full border border-white/25 bg-white/[0.06] px-6 py-3.5 text-sm font-semibold text-white transition hover:border-white/50 hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{{content.hero.secondaryLabel}}</a>
+          </div>
+
+          <ul class="mt-10 grid gap-3 border-t border-white/15 pt-6 text-sm text-blue-100/80 sm:grid-cols-3 sm:gap-5">
+            <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-4 w-4 shrink-0 text-fair-gold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg><span>{{content.hero.highlightOne}}</span></li>
+            <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-4 w-4 shrink-0 text-fair-gold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg><span>{{content.hero.highlightTwo}}</span></li>
+            <li class="flex items-start gap-2.5"><svg class="mt-0.5 h-4 w-4 shrink-0 text-fair-gold" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/></svg><span>{{content.hero.highlightThree}}</span></li>
+          </ul>
+        </div>
+
+        <div class="relative mx-auto w-full max-w-[24rem] py-3 sm:py-6">
+          <div class="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-300/20 blur-3xl"></div>
+          <div class="absolute -left-7 top-24 z-10 hidden rounded-2xl border border-white/15 bg-slate-900/85 px-4 py-3 text-white shadow-xl shadow-slate-950/20 backdrop-blur sm:block">
+            <p class="text-[11px] font-semibold uppercase tracking-[0.16em] text-blue-100/70">Events managed</p>
+            <p class="mt-1 text-2xl font-bold tracking-tight text-white">{{totalEvents}}</p>
+          </div>
+          <div class="relative rounded-[3rem] bg-slate-950 p-[9px] shadow-2xl shadow-slate-900/25 ring-1 ring-slate-700/60">
+            <div class="pointer-events-none absolute -left-[3px] top-28 h-10 w-[3px] rounded-l bg-slate-700"></div>
+            <div class="pointer-events-none absolute -left-[3px] top-44 h-14 w-[3px] rounded-l bg-slate-700"></div>
+            <div class="pointer-events-none absolute -right-[3px] top-36 h-16 w-[3px] rounded-r bg-slate-700"></div>
+            <div class="relative min-h-[31rem] overflow-hidden rounded-[2.4rem] bg-[#f7f8fa] px-5 pb-5 pt-4 sm:px-6">
+              <div class="mx-auto mb-6 h-5 w-24 rounded-full bg-slate-950"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-xs font-medium text-slate-500">{{content.brand.name}} · OVERVIEW</p>
+                  <p class="mt-1 text-xs text-slate-400">Your event at a glance</p>
+                </div>
+                <span class="grid h-9 w-9 place-items-center rounded-full bg-white text-fair-900 shadow-sm">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg>
+                </span>
+              </div>
+
+              <div class="mt-5 rounded-2xl bg-fair-900 p-5 text-white shadow-lg shadow-fair-900/15">
+                <div class="flex items-center justify-between gap-3">
+                  <p class="text-xs font-medium text-blue-100/75">LATEST EVENT</p>
+                  <span class="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-semibold capitalize text-white">
+                    <span class="h-1.5 w-1.5 rounded-full bg-emerald-400"></span>
+                    {{#if overview}}{{overview.statusLabel}}{{else}}No events{{/if}}
+                  </span>
+                </div>
+                {{#if overview}}
+                <h2 class="mt-3 truncate text-xl font-semibold tracking-tight">{{overview.event.name}}</h2>
+                {{else}}
+                <h2 class="mt-3 text-xl font-semibold tracking-tight">No events yet</h2>
+                {{/if}}
+                <p class="mt-1 text-xs text-blue-100/70">{{#if overview}}A clear view of your event progress{{else}}Create an event to see its overview here{{/if}}</p>
+              </div>
+
+              <div class="mt-4 grid grid-cols-3 gap-2.5">
+                <div class="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                  <span class="grid h-8 w-8 place-items-center rounded-xl bg-blue-50 text-fair-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m18 0v-2a4 4 0 0 0-3-3.87M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-7.87a4 4 0 0 1 0 7.75"/></svg></span>
+                  <p class="mt-3 text-[10px] font-medium text-slate-500">Contestants</p>
+                  <p class="mt-0.5 text-xl font-semibold tabular-nums tracking-tight text-slate-950">{{#if overview}}{{overview.contestants}}{{else}}0{{/if}}</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                  <span class="grid h-8 w-8 place-items-center rounded-xl bg-amber-50 text-amber-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg></span>
+                  <p class="mt-3 text-[10px] font-medium text-slate-500">Judges</p>
+                  <p class="mt-0.5 text-xl font-semibold tabular-nums tracking-tight text-slate-950">{{#if overview}}{{overview.judges}}{{else}}0{{/if}}</p>
+                </div>
+                <div class="rounded-2xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                  <span class="grid h-8 w-8 place-items-center rounded-xl bg-emerald-50 text-emerald-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h16M8 15v-4m4 4V7m4 8v-6"/></svg></span>
+                  <p class="mt-3 text-[10px] font-medium text-slate-500">Categories</p>
+                  <p class="mt-0.5 text-xl font-semibold tabular-nums tracking-tight text-slate-950">{{#if overview}}{{overview.categories}}{{else}}0{{/if}}</p>
+                </div>
+              </div>
+
+              <div class="mt-4 flex items-center justify-between rounded-2xl border border-slate-200/80 bg-white px-4 py-3.5 shadow-sm">
+                <div class="flex items-center gap-3">
+                  <span class="grid h-9 w-9 place-items-center rounded-xl bg-fair-900 text-fair-gold"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3M4 11h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg></span>
+                  <div><p class="text-xs font-semibold text-slate-900">Event overview</p><p class="mt-0.5 text-[10px] text-slate-500">Total events</p></div>
+                </div>
+                <p class="text-xl font-semibold tabular-nums text-fair-900">{{totalEvents}}</p>
+              </div>
+
+              <div class="absolute bottom-3 left-1/2 h-1 w-28 -translate-x-1/2 rounded-full bg-slate-300"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    {{#if homepageVideos}}
+    <section id="trailers" class="border-y border-slate-200/70 bg-white">
+      <div class="mx-auto max-w-7xl px-6 py-16 lg:px-8 lg:py-20">
+        <div class="mb-10">
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-fair-700">Watch</p>
+          <h2 class="mt-3 text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">Featured trailers</h2>
+          <p class="mt-3 max-w-2xl leading-7 text-slate-600">Take a closer look at our events and platform.</p>
+        </div>
+        <div class="grid gap-7 md:grid-cols-2">
+          {{#each homepageVideos}}
+          <article class="overflow-hidden rounded-3xl border border-slate-200/80 bg-white shadow-lg shadow-slate-900/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl">
+            <div class="aspect-video bg-slate-950">
+              {{#if this.fileUrl}}
+              <video controls preload="metadata" class="h-full w-full object-contain" aria-label="{{this.title}}">
+                <source src="{{this.fileUrl}}" type="{{this.mimeType}}" />
+                Your browser does not support video playback.
+              </video>
+              {{else}}
+              <iframe
+                src="{{this.embedUrl}}"
+                title="{{this.title}}"
+                class="h-full w-full"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowfullscreen
+              ></iframe>
+              {{/if}}
+            </div>
+            <div class="p-6">
+              <h3 class="text-lg font-semibold text-slate-950">{{this.title}}</h3>
+              {{#if this.description}}<p class="mt-2 text-sm leading-6 text-slate-600">{{this.description}}</p>{{/if}}
+            </div>
+          </article>
+          {{/each}}
+        </div>
+      </div>
+    </section>
+    {{/if}}
+
+    <div class="flex flex-col">
+    {{#if content.sections.roles.visible}}
+    <!-- Roles -->
+    <section id="roles" data-section-order="{{content.sections.roles.order}}" class="mx-auto w-full max-w-7xl scroll-mt-20 px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+      <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-[0.2em] text-fair-700">{{content.sections.roles.eyebrow}}</p>
+          <h2 class="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">{{content.sections.roles.title}}</h2>
+        </div>
+        <p class="max-w-xl leading-7 text-slate-600 lg:justify-self-end">{{content.sections.roles.description}}</p>
+      </div>
+
+      <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-xl hover:shadow-slate-900/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-blue-50 text-fair-800 ring-1 ring-inset ring-blue-100"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></div>
+          <h3 class="mt-6 text-lg font-semibold text-slate-950">{{content.sections.roles.administratorTitle}}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.roles.administratorDescription}}</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-amber-200 hover:shadow-xl hover:shadow-slate-900/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-100"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v4m8-4v4M4 10h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg></div>
+          <h3 class="mt-6 text-lg font-semibold text-slate-950">{{content.sections.roles.organizerTitle}}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.roles.organizerDescription}}</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-rose-200 hover:shadow-xl hover:shadow-slate-900/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-rose-50 text-rose-700 ring-1 ring-inset ring-rose-100"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01"/></svg></div>
+          <h3 class="mt-6 text-lg font-semibold text-slate-950">{{content.sections.roles.judgeTitle}}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.roles.judgeDescription}}</p>
+        </article>
+        <article class="group rounded-3xl border border-slate-200/80 bg-white p-7 shadow-sm transition duration-300 hover:-translate-y-1 hover:border-emerald-200 hover:shadow-xl hover:shadow-slate-900/5">
+          <div class="grid h-12 w-12 place-items-center rounded-2xl bg-emerald-50 text-emerald-700 ring-1 ring-inset ring-emerald-100"><svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h16M8 15v-4m4 4V7m4 8v-6"/></svg></div>
+          <h3 class="mt-6 text-lg font-semibold text-slate-950">{{content.sections.roles.tabulatorTitle}}</h3>
+          <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.roles.tabulatorDescription}}</p>
+        </article>
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if content.sections.process.visible}}
+    <!-- Process -->
+    <section id="process" data-section-order="{{content.sections.process.order}}" class="scroll-mt-20 border-y border-slate-200/70 bg-[#f7f8fa]">
+      <div class="mx-auto max-w-7xl px-5 py-20 sm:px-6 lg:px-8 lg:py-28">
+        <div class="grid gap-6 lg:grid-cols-[1fr_1fr] lg:items-end lg:gap-16">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-fair-700">{{content.sections.process.eyebrow}}</p>
+            <h2 class="mt-3 max-w-xl text-3xl font-semibold tracking-tight text-slate-950 sm:text-4xl">{{content.sections.process.title}}</h2>
+          </div>
+          <p class="max-w-xl leading-7 text-slate-600 lg:justify-self-end">{{content.sections.process.description}}</p>
+        </div>
+
+        <ol class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <li class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/5">
+            <span class="grid h-10 w-10 place-items-center rounded-2xl bg-blue-50 text-sm font-bold text-fair-800 ring-1 ring-inset ring-blue-100" aria-hidden="true">01</span>
+            <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-fair-700">{{content.sections.process.prepareLabel}}</p>
+            <h3 class="mt-1.5 text-lg font-semibold text-slate-950">{{content.sections.process.prepareTitle}}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.process.prepareDescription}}</p>
+          </li>
+          <li class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/5">
+            <span class="grid h-10 w-10 place-items-center rounded-2xl bg-amber-50 text-sm font-bold text-amber-700 ring-1 ring-inset ring-amber-100" aria-hidden="true">02</span>
+            <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-fair-700">{{content.sections.process.evaluateLabel}}</p>
+            <h3 class="mt-1.5 text-lg font-semibold text-slate-950">{{content.sections.process.evaluateTitle}}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.process.evaluateDescription}}</p>
+          </li>
+          <li class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/5">
+            <span class="grid h-10 w-10 place-items-center rounded-2xl bg-rose-50 text-sm font-bold text-rose-700 ring-1 ring-inset ring-rose-100" aria-hidden="true">03</span>
+            <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-fair-700">{{content.sections.process.verifyLabel}}</p>
+            <h3 class="mt-1.5 text-lg font-semibold text-slate-950">{{content.sections.process.verifyTitle}}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.process.verifyDescription}}</p>
+          </li>
+          <li class="rounded-3xl border border-slate-200/80 bg-white p-6 shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-slate-900/5">
+            <span class="grid h-10 w-10 place-items-center rounded-2xl bg-emerald-50 text-sm font-bold text-emerald-700 ring-1 ring-inset ring-emerald-100" aria-hidden="true">04</span>
+            <p class="mt-6 text-xs font-bold uppercase tracking-[0.16em] text-fair-700">{{content.sections.process.publishLabel}}</p>
+            <h3 class="mt-1.5 text-lg font-semibold text-slate-950">{{content.sections.process.publishTitle}}</h3>
+            <p class="mt-2 text-sm leading-6 text-slate-600">{{content.sections.process.publishDescription}}</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+    {{/if}}
+
+    {{#if content.sections.callToAction.visible}}
+    <!-- Call to action -->
+    <section data-section-order="{{content.sections.callToAction.order}}" class="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8 lg:py-24">
+      <div class="relative isolate overflow-hidden rounded-[2rem] bg-fair-900 px-7 py-10 text-white shadow-2xl shadow-fair-900/15 sm:px-12 sm:py-12 lg:px-16 lg:py-14">
+        <div class="pointer-events-none absolute -right-24 -top-24 -z-10 h-72 w-72 rounded-full bg-fair-gold/20 blur-3xl"></div>
+        <div class="pointer-events-none absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-fair-gold via-amber-200 to-transparent"></div>
+        <div class="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
+          <div class="max-w-2xl">
+            <p class="text-xs font-bold uppercase tracking-[0.2em] text-fair-gold">{{content.sections.callToAction.eyebrow}}</p>
+            <h2 class="mt-3 text-2xl font-semibold tracking-tight sm:text-3xl">{{content.sections.callToAction.title}}</h2>
+            <p class="mt-3 leading-7 text-blue-100/90">{{content.sections.callToAction.description}}</p>
+          </div>
+          <a href="{{content.sections.callToAction.buttonHref}}" class="shrink-0 rounded-full bg-fair-gold px-7 py-3.5 text-sm font-semibold text-slate-950 shadow-lg shadow-black/20 transition hover:-translate-y-0.5 hover:brightness-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white">{{content.sections.callToAction.buttonLabel}}</a>
+        </div>
+      </div>
+    </section>
+    {{/if}}
+    </div>
+  </main>
+
+{{> footer}}

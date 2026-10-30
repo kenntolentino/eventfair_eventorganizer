@@ -1,0 +1,69 @@
+{{> app-start}}
+<section class="relative mb-7 overflow-hidden rounded-[1.75rem] bg-gradient-to-br from-[#0b1429] via-[#102947] to-[#193e65] px-6 py-7 text-white shadow-xl shadow-blue-950/10 sm:px-8 sm:py-8">
+  <div class="pointer-events-none absolute -right-16 -top-28 h-72 w-72 rounded-full border border-white/[0.08]"></div>
+  <div class="pointer-events-none absolute -right-4 -top-16 h-48 w-48 rounded-full border border-white/[0.08]"></div>
+  <div class="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <div class="max-w-2xl">
+      <span class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.08] px-3 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-blue-100"><span class="h-2 w-2 rounded-full bg-emerald-400"></span>Judging oversight</span>
+      <h1 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Judging progress</h1>
+      <p class="mt-2 max-w-xl text-sm leading-6 text-blue-100/80">Monitor judge assignments and submitted score sheets against the expected event workload.</p>
+    </div>
+    <div class="flex items-center gap-3 rounded-xl border border-white/15 bg-white/[0.08] px-4 py-3">
+      <span class="flex h-9 w-9 items-center justify-center rounded-lg bg-white/10 text-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h17"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 15 4-4 3 2 5-6"/></svg></span>
+      <div><p class="text-[10px] font-bold uppercase tracking-[0.14em] text-blue-100/65">Overall completion</p><p class="mt-0.5 text-lg font-bold">{{summary.completion}}%</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 2xl:grid-cols-4" aria-label="Judging progress summary">
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60">
+    <div class="absolute inset-x-0 top-0 h-1 bg-blue-500"></div><div class="flex items-start justify-between"><div><p class="text-sm font-semibold text-slate-600">Events monitored</p><p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{summary.events}}</p></div><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span></div><p class="mt-4 border-t border-slate-100 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-blue-700">Active workspace</p>
+  </article>
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60">
+    <div class="absolute inset-x-0 top-0 h-1 bg-indigo-500"></div><div class="flex items-start justify-between"><div><p class="text-sm font-semibold text-slate-600">Expected score sheets</p><p class="mt-3 text-3xl font-bold tracking-tight text-slate-950">{{summary.expected}}</p></div><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-indigo-50 text-indigo-700 ring-1 ring-indigo-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M7 3h7l5 5v13H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path stroke-linecap="round" stroke-linejoin="round" d="M14 3v5h5M9 13h6m-6 4h6"/></svg></span></div><p class="mt-4 border-t border-slate-100 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-indigo-700">Total workload</p>
+  </article>
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60">
+    <div class="absolute inset-x-0 top-0 h-1 bg-emerald-500"></div><div class="flex items-start justify-between"><div><p class="text-sm font-semibold text-slate-600">Submitted sheets</p><p class="mt-3 text-3xl font-bold tracking-tight text-emerald-700">{{summary.submitted}}</p></div><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-emerald-50 text-emerald-700 ring-1 ring-emerald-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m5 12 4 4L19 6"/><circle cx="12" cy="12" r="9"/></svg></span></div><p class="mt-4 border-t border-slate-100 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-emerald-700">Received submissions</p>
+  </article>
+  <article class="group relative overflow-hidden rounded-2xl border border-slate-200/80 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-slate-200/60">
+    <div class="absolute inset-x-0 top-0 h-1 bg-amber-500"></div><div class="flex items-start justify-between"><div><p class="text-sm font-semibold text-slate-600">Remaining submissions</p><p class="mt-3 text-3xl font-bold tracking-tight text-amber-700">{{summary.remaining}}</p></div><span class="flex h-11 w-11 items-center justify-center rounded-xl bg-amber-50 text-amber-700 ring-1 ring-amber-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path stroke-linecap="round" stroke-linejoin="round" d="M12 7v5l3 2"/></svg></span></div><p class="mt-4 border-t border-slate-100 pt-3 text-[10px] font-bold uppercase tracking-[0.14em] text-amber-700">Awaiting submission</p>
+  </article>
+</section>
+
+<section class="mb-6 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex flex-col gap-5 p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+    <div class="flex items-start gap-3">
+      <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700 ring-1 ring-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h17"/><path stroke-linecap="round" stroke-linejoin="round" d="m7 15 4-4 3 2 5-6"/></svg></span>
+      <div><h2 class="text-base font-bold text-slate-950">Overall submission completion</h2><p class="mt-1 text-sm text-slate-500">{{summary.submitted}} of {{summary.expected}} expected judge score sheets submitted</p></div>
+    </div>
+    <p class="text-3xl font-bold tracking-tight text-[#102947]">{{summary.completion}}<span class="ml-0.5 text-lg text-slate-400">%</span></p>
+  </div>
+  <div class="px-5 pb-5 sm:px-6 sm:pb-6"><div class="h-3 overflow-hidden rounded-full bg-slate-100"><div class="h-full max-w-full rounded-full bg-gradient-to-r from-blue-700 to-sky-500 transition-all" style="width: {{summary.completion}}%"></div></div><div class="mt-2 flex justify-between text-[10px] font-medium text-slate-400"><span>0%</span><span>100%</span></div></div>
+</section>
+
+<section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 px-5 py-4 sm:px-6">
+    <div><h2 class="text-base font-bold text-slate-950">Event submission tracker</h2><p class="mt-0.5 text-xs text-slate-500 sm:text-sm">Compare assigned teams and score submissions across each competition.</p></div>
+    <span class="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-blue-50 px-3 py-1.5 text-xs font-semibold text-blue-800"><span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>{{summary.events}} events</span>
+  </div>
+  <div class="overflow-x-auto">
+    <table class="min-w-[900px] w-full text-left text-sm">
+      <thead class="bg-slate-50/90 text-[10px] uppercase tracking-[0.14em] text-slate-500"><tr><th class="px-5 py-4 font-bold">Competition</th><th class="px-5 py-4 font-bold">Officials</th><th class="px-5 py-4 font-bold">Contestants</th><th class="px-5 py-4 font-bold">Submitted</th><th class="px-5 py-4 font-bold">Remaining</th><th class="px-5 py-4 font-bold">Completion</th></tr></thead>
+      <tbody class="divide-y divide-slate-100">
+        {{#each rows}}
+        <tr class="transition hover:bg-blue-50/40">
+          <td class="px-5 py-4"><div class="flex items-start gap-3"><span class="mt-0.5 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-blue-50 to-indigo-100 text-blue-700 ring-1 ring-blue-100"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span><div><p class="font-semibold text-slate-900">{{name}}</p><span class="mt-1 inline-flex rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10px] font-semibold capitalize text-slate-600">{{status}}</span></div></div></td>
+          <td class="px-5 py-4"><div class="flex flex-wrap gap-1.5"><span class="inline-flex items-center gap-1.5 rounded-full border border-blue-100 bg-blue-50 px-2.5 py-1 text-[11px] font-semibold text-blue-800"><span class="h-1.5 w-1.5 rounded-full bg-blue-500"></span>{{judges}} judges</span><span class="inline-flex items-center gap-1.5 rounded-full border border-violet-100 bg-violet-50 px-2.5 py-1 text-[11px] font-semibold text-violet-800"><span class="h-1.5 w-1.5 rounded-full bg-violet-500"></span>{{tabulators}} tabulators</span></div></td>
+          <td class="px-5 py-4"><span class="inline-flex min-w-9 justify-center rounded-lg border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs font-bold tabular-nums text-slate-700">{{contestants}}</span></td>
+          <td class="px-5 py-4"><span class="font-bold tabular-nums text-slate-900">{{submitted}}</span><span class="ml-1 text-xs text-slate-500">of {{expected}}</span></td>
+          <td class="px-5 py-4"><span class="inline-flex min-w-9 justify-center rounded-lg border {{#if remaining}}border-amber-200 bg-amber-50 text-amber-800{{else}}border-emerald-200 bg-emerald-50 text-emerald-800{{/if}} px-2.5 py-1.5 text-xs font-bold tabular-nums">{{remaining}}</span></td>
+          <td class="min-w-52 px-5 py-4"><div class="flex items-center gap-3"><div class="h-2 flex-1 overflow-hidden rounded-full bg-slate-100"><div class="h-full max-w-full rounded-full {{#if (eq completion 100)}}bg-emerald-500{{else}}bg-gradient-to-r from-blue-700 to-sky-500{{/if}}" style="width: {{completion}}%"></div></div><span class="w-10 text-right text-xs font-bold tabular-nums {{#if (eq completion 100)}}text-emerald-700{{else}}text-slate-700{{/if}}">{{completion}}%</span></div></td>
+        </tr>
+        {{else}}
+        <tr><td class="px-5 py-16 text-center" colspan="6"><span class="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-700"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path stroke-linecap="round" d="M16 3v4M8 3v4M3 11h18"/></svg></span><p class="mt-4 font-semibold text-slate-800">No events to monitor</p><p class="mt-1 text-sm text-slate-500">Create an event and assign judges to track score submissions.</p></td></tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</section>
+{{> app-end}}

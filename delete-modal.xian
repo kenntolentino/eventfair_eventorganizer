@@ -1,0 +1,11 @@
+<div id="deleteModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-slate-950/50 p-4" role="dialog" aria-modal="true" aria-labelledby="deleteModalTitle">
+  <div class="w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl">
+    <div class="flex h-11 w-11 items-center justify-center rounded-full bg-rose-50 text-lg font-bold text-rose-700">!</div>
+    <h3 id="deleteModalTitle" class="mt-4 text-lg font-semibold text-slate-900">Delete this record?</h3>
+    <p id="deleteModalMessage" class="mt-2 text-sm leading-6 text-slate-600">This action cannot be undone.</p>
+    <form id="deleteForm" method="POST" class="mt-6 flex justify-end gap-3">
+      <button type="button" onclick="closeModal('deleteModal')" class="rounded-xl border border-slate-200 px-4 py-2.5 text-sm font-semibold text-slate-700 hover:bg-slate-50">Cancel</button>
+      <button type="submit" class="rounded-xl bg-rose-700 px-4 py-2.5 text-sm font-semibold text-white hover:bg-rose-800">Delete record</button>
+    </form>
+  </div>
+</div>

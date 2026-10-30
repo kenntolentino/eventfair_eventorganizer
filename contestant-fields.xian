@@ -1,0 +1,36 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Competition event</label>
+<select name="eventId" required class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  {{#each events}}<option value="{{id}}">{{name}}</option>{{/each}}
+</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Category</label>
+<select name="categoryId" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  <option value="">General / no category</option>
+  {{#each categories}}<option value="{{id}}">{{#if Event}}{{Event.name}} · {{/if}}{{name}}</option>{{/each}}
+</select>
+<div class="mb-4 flex items-center gap-4 rounded-xl border border-slate-200 bg-slate-50 p-4">
+  <div class="flex h-20 w-20 flex-shrink-0 items-center justify-center overflow-hidden rounded-xl bg-slate-200 text-xs font-semibold text-slate-500">
+    <img data-contestant-image-preview alt="Contestant portrait preview" class="hidden h-full w-full object-cover" />
+    <span data-contestant-image-placeholder>No photo</span>
+  </div>
+  <div class="min-w-0 flex-1">
+    <label class="mb-1 block text-sm font-semibold text-slate-700">Contestant photo <span class="font-normal text-slate-500">(optional)</span></label>
+    <input type="file" name="image" accept="image/jpeg,image/png,image/webp" onchange="previewContestantImage(this)" class="block w-full text-sm text-slate-600 file:mr-3 file:rounded-lg file:border-0 file:bg-white file:px-3 file:py-2 file:text-sm file:font-semibold file:text-slate-700" />
+    <p class="mt-1 text-xs text-slate-500">JPG, PNG, or WebP · maximum 5 MB</p>
+  </div>
+</div>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Contestant number</label><input name="contestantNumber" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Registration status</label><select name="status" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500"><option value="registered">Registered</option><option value="withdrawn">Withdrawn</option><option value="disqualified">Disqualified</option></select></div>
+</div>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">First name</label><input name="firstName" required autocomplete="given-name" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Middle name</label><input name="middleName" autocomplete="additional-name" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Last name</label><input name="lastName" required autocomplete="family-name" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+</div>
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Gender</label><input name="gender" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Age</label><input type="number" name="age" min="1" max="120" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+  <div><label class="mb-1 block text-sm font-semibold text-slate-700">Organization / school</label><input name="organization" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" /></div>
+</div>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Biography</label>
+<textarea name="biography" rows="3" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500"></textarea>

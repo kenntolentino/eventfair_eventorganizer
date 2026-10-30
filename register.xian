@@ -1,0 +1,172 @@
+{{> head}}
+<body class="min-h-screen bg-[#f4f6fa] text-slate-800 antialiased selection:bg-amber-200 selection:text-slate-950">
+  <main class="grid min-h-screen lg:grid-cols-[1.02fr_0.98fr]">
+    <section class="relative hidden overflow-hidden bg-gradient-to-br from-[#0b1c31] via-fair-900 to-[#173d62] text-white lg:flex lg:flex-col lg:justify-between lg:p-10 xl:p-14">
+      <div class="pointer-events-none absolute -right-32 -top-32 h-96 w-96 rounded-full bg-fair-gold/15 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-40 -left-32 h-96 w-96 rounded-full bg-blue-400/15 blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,rgba(255,255,255,0.07),transparent_35%)]"></div>
+      <a href="/" class="relative flex w-fit items-center gap-3">
+        {{#if content.brand.logo}}
+        <img src="{{content.brand.logo}}" alt="" class="h-11 w-11 rounded-2xl bg-white object-contain p-1.5 shadow-lg shadow-black/10" />
+        {{else}}
+        <span class="grid h-11 w-11 place-items-center rounded-2xl bg-fair-gold text-lg font-bold text-fair-900 shadow-lg shadow-black/10">E</span>
+        {{/if}}
+        <span>
+          <span class="block text-lg font-bold tracking-tight">{{content.brand.name}}</span>
+          <span class="block text-[10px] font-medium tracking-[0.16em] text-blue-100">{{content.brand.subtitle}}</span>
+        </span>
+      </a>
+
+      <div class="relative mx-auto grid w-full max-w-5xl items-center gap-8 py-10 xl:grid-cols-[1fr_0.82fr] xl:gap-10">
+        <div class="max-w-xl">
+          <p class="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.07] px-3.5 py-2 text-xs font-semibold uppercase tracking-[0.15em] text-amber-200 shadow-sm backdrop-blur">
+            <span class="h-1.5 w-1.5 rounded-full bg-fair-gold"></span>
+            Organize with confidence
+          </p>
+          <h1 class="mt-6 text-4xl font-semibold leading-[1.08] tracking-[-0.035em] xl:text-[3.4rem]">Build a better experience for <span class="text-amber-200">every event.</span></h1>
+          <p class="mt-5 max-w-lg text-base leading-7 text-blue-100/85">Create your organizer account to coordinate competitions, contestants, judging criteria, and official assignments in one place.</p>
+
+          <div class="mt-8 grid gap-3 sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
+              <span class="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.08] text-amber-200"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8 3v4m8-4v4M4 10h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg></span>
+              <p class="mt-3 text-sm font-semibold">Organize events</p>
+              <p class="mt-1 text-xs leading-5 text-blue-100/75">Manage event details, categories, and contestants.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-white/[0.06] p-4 backdrop-blur-sm">
+              <span class="grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-white/[0.08] text-amber-200"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg></span>
+              <p class="mt-3 text-sm font-semibold">Support fair judging</p>
+              <p class="mt-1 text-xs leading-5 text-blue-100/75">Set clear criteria and coordinate event officials.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="relative mx-auto hidden w-full max-w-[15.5rem] xl:block">
+          <div class="pointer-events-none absolute -inset-10 rounded-full bg-blue-300/10 blur-3xl"></div>
+          <div class="relative rotate-[3deg] rounded-[2.8rem] bg-[#080e18] p-2.5 shadow-2xl shadow-black/40 ring-1 ring-white/20">
+            <div class="pointer-events-none absolute -left-[3px] top-24 h-9 w-[3px] rounded-l bg-slate-500"></div>
+            <div class="pointer-events-none absolute -right-[3px] top-32 h-14 w-[3px] rounded-r bg-slate-500"></div>
+            <div class="min-h-[27rem] overflow-hidden rounded-[2.2rem] bg-[#f5f7fb] px-4 pb-5 pt-3 text-slate-900">
+              <div class="mx-auto mb-5 h-5 w-20 rounded-full bg-[#080e18]"></div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <p class="text-[9px] font-semibold uppercase tracking-[0.16em] text-slate-500">{{content.brand.name}}</p>
+                  <p class="mt-1 text-xs font-semibold text-slate-900">Organizer workspace</p>
+                </div>
+                <span class="grid h-8 w-8 place-items-center rounded-full bg-white text-fair-800 shadow-sm">
+                  <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" stroke-linejoin="round" d="m9 12 2 2 4-4"/></svg>
+                </span>
+              </div>
+
+              <div class="mt-5 rounded-2xl bg-fair-900 p-4 text-white shadow-lg shadow-fair-900/15">
+                <div class="flex items-center justify-between">
+                  <p class="text-[9px] font-medium uppercase tracking-[0.15em] text-blue-100/70">Your next event</p>
+                  <span class="rounded-full bg-emerald-300/15 px-2 py-1 text-[8px] font-semibold text-emerald-200">READY TO PLAN</span>
+                </div>
+                <p class="mt-3 text-sm font-semibold">Make every moment count.</p>
+                <p class="mt-1 text-[10px] leading-4 text-blue-100/70">A clear, organized event experience starts here.</p>
+              </div>
+
+              <div class="mt-4 rounded-2xl border border-slate-200/80 bg-white p-4 shadow-sm">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <p class="text-[9px] font-medium uppercase tracking-[0.13em] text-slate-500">Event setup</p>
+                    <p class="mt-1 text-xs font-semibold text-slate-900">Your plan, at a glance</p>
+                  </div>
+                  <span class="grid h-8 w-8 place-items-center rounded-xl bg-amber-50 text-amber-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 19V5m0 14h16M8 15v-4m4 4V7m4 8v-6"/></svg></span>
+                </div>
+                <div class="mt-4 space-y-3">
+                  <div>
+                    <div class="mb-1.5 flex justify-between text-[9px]"><span class="font-medium text-slate-600">Event details</span><span class="text-slate-400">01</span></div>
+                    <div class="h-1.5 rounded-full bg-slate-100"><div class="h-1.5 w-3/4 rounded-full bg-fair-700"></div></div>
+                  </div>
+                  <div>
+                    <div class="mb-1.5 flex justify-between text-[9px]"><span class="font-medium text-slate-600">Categories &amp; criteria</span><span class="text-slate-400">02</span></div>
+                    <div class="h-1.5 rounded-full bg-slate-100"><div class="h-1.5 w-1/2 rounded-full bg-fair-gold"></div></div>
+                  </div>
+                  <div>
+                    <div class="mb-1.5 flex justify-between text-[9px]"><span class="font-medium text-slate-600">Judging team</span><span class="text-slate-400">03</span></div>
+                    <div class="h-1.5 rounded-full bg-slate-100"><div class="h-1.5 w-1/3 rounded-full bg-emerald-500"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-3 flex items-center gap-3 rounded-xl border border-slate-200/80 bg-white p-3 shadow-sm">
+                <span class="grid h-8 w-8 place-items-center rounded-lg bg-blue-50 text-fair-700"><svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2m18 0v-2a4 4 0 0 0-3-3.87M9 11a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm8-7.87a4 4 0 0 1 0 7.75"/></svg></span>
+                <div><p class="text-[10px] font-semibold text-slate-800">Bring your team together</p><p class="mt-0.5 text-[9px] text-slate-500">Judges, tabulators, and more</p></div>
+              </div>
+              <div class="mx-auto mt-4 h-1 w-20 rounded-full bg-slate-300"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="relative text-xs text-blue-100/55">&copy; 2026 {{content.brand.name}}. Transparent judging, accountable results.</p>
+    </section>
+
+    <section class="relative flex min-h-screen flex-col overflow-hidden px-5 py-6 sm:px-8 lg:justify-center lg:px-10 xl:px-16">
+      <div class="pointer-events-none absolute -right-40 -top-40 h-96 w-96 rounded-full bg-blue-100/70 blur-3xl"></div>
+      <div class="pointer-events-none absolute -bottom-48 -left-32 h-96 w-96 rounded-full bg-amber-100/50 blur-3xl"></div>
+      <a href="/" class="relative mx-auto flex w-full max-w-md items-center gap-3 lg:hidden">
+        {{#if content.brand.logo}}
+        <img src="{{content.brand.logo}}" alt="" class="h-10 w-10 rounded-2xl object-contain" />
+        {{else}}
+        <span class="grid h-10 w-10 place-items-center rounded-2xl bg-fair-900 text-lg font-bold text-fair-gold">E</span>
+        {{/if}}
+        <span>
+          <span class="block text-base font-bold tracking-tight text-slate-950">{{content.brand.name}}</span>
+          <span class="block text-[10px] font-medium tracking-[0.14em] text-slate-500">{{content.brand.subtitle}}</span>
+        </span>
+      </a>
+
+      <div class="relative mx-auto my-auto w-full max-w-md py-10 lg:my-0 lg:py-0">
+        <a href="/" class="mb-7 inline-flex items-center gap-1.5 text-sm font-medium text-slate-500 transition hover:text-fair-900">
+          <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m15 18-6-6 6-6M9 12h12"/></svg>
+          Back to homepage
+        </a>
+        <div class="rounded-[1.75rem] border border-white bg-white/90 p-6 shadow-2xl shadow-slate-900/10 ring-1 ring-slate-900/[0.03] backdrop-blur sm:p-9">
+          <div class="mb-6">
+            <span class="mb-5 grid h-12 w-12 place-items-center rounded-2xl bg-blue-50 text-fair-800 ring-1 ring-inset ring-blue-100">
+              <svg class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m-7-7h14"/><circle cx="12" cy="12" r="9"/></svg>
+            </span>
+            <p class="text-xs font-bold uppercase tracking-[0.18em] text-fair-700">Get started</p>
+            <h2 class="mt-2 text-3xl font-semibold tracking-tight text-slate-950">Create your account</h2>
+            <p class="mt-2 text-sm leading-6 text-slate-600">Register to set up and manage your events on {{content.brand.name}}.</p>
+          </div>
+          {{#if error_msg}}<div role="alert" class="mb-5 flex gap-3 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800"><svg class="mt-0.5 h-4 w-4 shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v4m0 4h.01M10.3 3.9 1.8 18.5A1.7 1.7 0 0 0 3.3 21h17.4a1.7 1.7 0 0 0 1.5-2.5L13.7 3.9a2 2 0 0 0-3.4 0Z"/></svg><span>{{error_msg}}</span></div>{{/if}}
+          <form method="POST" action="/register" class="space-y-4">
+            <div>
+              <label for="registerName" class="mb-2 block text-sm font-semibold text-slate-700">Full name</label>
+              <input id="registerName" type="text" name="name" autocomplete="name" required maxlength="120" placeholder="Your full name" class="w-full rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-fair-500 focus:bg-white focus:ring-4 focus:ring-fair-500/10" />
+            </div>
+            <div>
+              <label for="registerEmail" class="mb-2 block text-sm font-semibold text-slate-700">Email address</label>
+              <input id="registerEmail" type="email" name="email" autocomplete="email" required maxlength="255" placeholder="you@example.com" class="w-full rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3.5 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-fair-500 focus:bg-white focus:ring-4 focus:ring-fair-500/10" />
+            </div>
+            <div>
+              <label for="registerPassword" class="mb-2 block text-sm font-semibold text-slate-700">Password</label>
+              <div class="relative" data-password-field>
+                <input id="registerPassword" type="password" name="password" autocomplete="new-password" required minlength="8" placeholder="Create a secure password" class="w-full rounded-2xl border border-slate-200 bg-slate-50/70 px-4 py-3.5 pr-12 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-fair-500 focus:bg-white focus:ring-4 focus:ring-fair-500/10" />
+                <button type="button" data-password-toggle aria-label="Show password" aria-pressed="false" class="absolute inset-y-0 right-0 inline-flex w-12 items-center justify-center rounded-r-2xl text-slate-500 transition hover:text-fair-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-fair-500">
+                  <svg data-password-eye class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"/><circle cx="12" cy="12" r="3"/></svg>
+                  <svg data-password-eye-off class="hidden h-5 w-5" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="m3 3 18 18M10.6 10.6a2 2 0 0 0 2.8 2.8"/><path stroke-linecap="round" stroke-linejoin="round" d="M9.9 5.2A10.7 10.7 0 0 1 12 5c6 0 9.5 7 9.5 7a17.8 17.8 0 0 1-3.1 3.9M6.2 6.2C3.9 7.8 2.5 12 2.5 12s3.5 7 9.5 7c1 0 1.9-.2 2.8-.5"/></svg>
+                </button>
+              </div>
+              <p class="mt-1.5 text-xs text-slate-500">Use at least 8 characters.</p>
+            </div>
+            <div class="flex items-start gap-2.5 rounded-2xl border border-blue-100 bg-blue-50/70 px-3.5 py-3">
+              <svg class="mt-0.5 h-4 w-4 shrink-0 text-fair-700" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V7l-8-4Z"/></svg>
+              <p class="text-xs leading-5 text-slate-600">Public registration creates an <strong class="font-semibold text-slate-800">Event Organizer</strong> account. Judges and tabulators are added by an administrator.</p>
+            </div>
+            <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-fair-900 px-4 py-3.5 text-sm font-semibold text-white shadow-lg shadow-fair-900/15 transition hover:-translate-y-0.5 hover:bg-fair-800 focus:outline-none focus:ring-4 focus:ring-fair-500/25">
+              Create organizer account
+              <svg class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m-6-6 6 6-6 6"/></svg>
+            </button>
+          </form>
+          <p class="mt-6 border-t border-slate-100 pt-5 text-center text-sm text-slate-600">Already have an account? <a href="/login" class="font-semibold text-fair-700 transition hover:text-fair-900 hover:underline">Sign in</a></p>
+        </div>
+        <p class="mt-6 text-center text-xs leading-5 text-slate-500">Your account is protected and managed according to your assigned role.</p>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

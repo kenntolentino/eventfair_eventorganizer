@@ -1,0 +1,40 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Event name</label>
+<input name="name" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Description</label>
+<textarea name="description" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" rows="3"></textarea>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Venue</label>
+<input name="venue" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+<div class="grid grid-cols-2 gap-3">
+  <div>
+    <label class="mb-1 block text-sm font-semibold text-slate-700">Start date</label>
+    <input type="date" name="startDate" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+  </div>
+  <div>
+    <label class="mb-1 block text-sm font-semibold text-slate-700">End date</label>
+    <input type="date" name="endDate" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+  </div>
+</div>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Event status</label>
+<select name="status" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  <option value="draft">Draft</option>
+  <option value="scheduled">Scheduled</option>
+  <option value="ongoing">Ongoing</option>
+  <option value="judging">Judging</option>
+  <option value="tabulated">Tabulated</option>
+  <option value="published">Published</option>
+  <option value="archived">Archived</option>
+</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Scoring formula</label>
+<select name="scoringFormula" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  <option value="average_weighted">Average of weighted judge scores</option>
+  <option value="sum_weighted">Sum of weighted judge scores</option>
+</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Allow score revision after submit</label>
+<select name="allowScoreRevision" class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  <option value="true">Yes</option>
+  <option value="false">No</option>
+</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Evaluation instructions</label>
+<textarea name="evaluationInstructions" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" rows="3"></textarea>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Scoring notes</label>
+<textarea name="scoringNotes" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" rows="2"></textarea>

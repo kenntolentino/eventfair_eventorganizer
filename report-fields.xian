@@ -1,0 +1,6 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Assigned event</label>
+<select name="eventId" required class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-amber-500"><option value="">Select event</option>{{#each events}}<option value="{{id}}" {{#if selected}}selected{{/if}}>{{name}}</option>{{/each}}</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Report title</label>
+<input name="title" maxlength="255" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-amber-500" placeholder="e.g. Final tabulation summary" value="{{defaultReportTitle}}" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Additional tabulator notes <span class="font-normal text-slate-400">(optional)</span></label>
+<textarea name="summary" rows="4" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-amber-500" placeholder="The system-generated snapshot is included automatically. Add context or notes for the organizer."></textarea>

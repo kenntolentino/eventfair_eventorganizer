@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            fair: { 900: "#0f2744", 800: "#16375f", 700: "#1d4e7a", 500: "#2f7aa8", gold: "#c9a227" }
+          }
+        }
+      }
+    }
+  </script>
+  <script src="/js/app.js" defer></script>
+  <title>{{ title }}</title>
+</head>

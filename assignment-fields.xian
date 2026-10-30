@@ -1,0 +1,8 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Competition event</label>
+<select name="eventId" required class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">{{#each events}}<option value="{{id}}">{{name}}</option>{{/each}}</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Active official</label>
+<select name="userId" required class="mb-4 w-full rounded-xl border border-slate-200 bg-white px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">
+  {{#each officials}}<option value="{{id}}">{{name}} · {{role}} · {{email}}</option>{{/each}}
+</select>
+<label class="mb-1 block text-sm font-semibold text-slate-700">Assignment notes</label>
+<input name="notes" maxlength="255" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" placeholder="Optional responsibilities or coordination notes" />

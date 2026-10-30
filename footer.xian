@@ -1,0 +1,5 @@
+<footer class="py-4 text-center text-slate-500 text-sm">
+  {{#if content.brand.name}}&copy; 2026 {{content.brand.name}} — {{content.brand.subtitle}}{{else}}&copy; 2026 EventFair — Transparent Judge Tabulation Management{{/if}}
+</footer>
+</body>
+</html>

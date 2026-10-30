@@ -1,0 +1,310 @@
+{{> app-start}}
+<section class="relative mb-7 overflow-hidden rounded-3xl bg-gradient-to-br from-slate-950 via-fair-900 to-fair-800 px-6 py-7 text-white shadow-xl shadow-slate-900/10 sm:px-8 sm:py-9">
+  <div class="pointer-events-none absolute -right-10 -top-20 h-64 w-64 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -right-2 -top-12 h-48 w-48 rounded-full border border-white/10"></div>
+  <div class="pointer-events-none absolute -bottom-28 right-40 h-56 w-56 rounded-full bg-fair-500/20 blur-3xl"></div>
+  <div class="relative flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
+    <div class="max-w-2xl">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-3 py-1.5 text-xs font-semibold tracking-wide text-blue-100">
+        <span class="h-2 w-2 rounded-full bg-emerald-400"></span>
+        PUBLIC WEBSITE
+      </div>
+      <h1 class="text-3xl font-bold tracking-tight sm:text-4xl">Homepage content</h1>
+      <p class="mt-3 max-w-xl text-sm leading-6 text-slate-300 sm:text-base">Shape the public EventFair experience: manage your brand, visitor messaging, section order, and homepage media—all from one place.</p>
+    </div>
+    <a href="/" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/10 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-white/15">
+      <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M14 3h7v7m-1-6-9 9"/><path stroke-linecap="round" stroke-linejoin="round" d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>
+      View live homepage
+    </a>
+  </div>
+</section>
+
+<form method="POST" action="/admin/homepage" enctype="multipart/form-data" class="space-y-6">
+  <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+    <div class="flex items-start gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-blue-50/50 px-5 py-5 sm:px-7">
+      <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-blue-50 text-blue-700" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3 4 7v5c0 4.5 3.4 7.6 8 9 4.6-1.4 8-4.5 8-9V7l-8-4Z"/><path stroke-linecap="round" d="M9 12h6"/></svg></span>
+      <div>
+      <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-fair-700">01 · Brand identity</p>
+      <h2 class="mt-1 text-lg font-bold text-slate-950">Name and logo</h2>
+      <p class="mt-1 text-sm text-slate-500">These appear in the public navigation and browser title.</p>
+      </div>
+    </div>
+    <div class="grid gap-5 p-5 md:grid-cols-2 sm:p-7">
+      <div>
+        <label for="brandName" class="mb-1.5 block text-sm font-semibold text-slate-700">Platform name</label>
+        <input id="brandName" name="brandName" value="{{content.brand.name}}" maxlength="60" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div>
+        <label for="brandSubtitle" class="mb-1.5 block text-sm font-semibold text-slate-700">Brand subtitle</label>
+        <input id="brandSubtitle" name="brandSubtitle" value="{{content.brand.subtitle}}" maxlength="80" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div>
+        <label for="brandSignInLabel" class="mb-1.5 block text-sm font-semibold text-slate-700">Sign-in link label</label>
+        <input id="brandSignInLabel" name="brandSignInLabel" value="{{content.brand.signInLabel}}" maxlength="50" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div>
+        <label for="brandSignInHref" class="mb-1.5 block text-sm font-semibold text-slate-700">Sign-in link destination</label>
+        <input id="brandSignInHref" name="brandSignInHref" value="{{content.brand.signInHref}}" maxlength="255" required placeholder="/login" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div>
+        <label for="brandActionLabel" class="mb-1.5 block text-sm font-semibold text-slate-700">Navigation call-to-action label</label>
+        <input id="brandActionLabel" name="brandActionLabel" value="{{content.brand.actionLabel}}" maxlength="50" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div>
+        <label for="brandActionHref" class="mb-1.5 block text-sm font-semibold text-slate-700">Navigation call-to-action link</label>
+        <input id="brandActionHref" name="brandActionHref" value="{{content.brand.actionHref}}" maxlength="255" required placeholder="/register" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+      </div>
+      <div class="md:col-span-2">
+        <label for="brandLogo" class="mb-1.5 block text-sm font-semibold text-slate-700">Logo image <span class="font-normal text-slate-500">(optional, JPG/PNG/WebP, up to 5 MB)</span></label>
+        <input id="brandLogo" name="brandLogo" type="file" accept="image/jpeg,image/png,image/webp" class="block w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-slate-700" />
+        {{#if content.brand.logo}}
+        <div class="mt-3 flex items-center gap-4">
+          <img src="{{content.brand.logo}}" alt="Current platform logo" class="h-14 w-14 rounded-xl border border-slate-200 object-contain p-1" />
+          <label class="inline-flex items-center gap-2 text-sm text-slate-600"><input type="checkbox" name="removeBrandLogo" value="true" class="rounded border-slate-300 text-fair-800 focus:ring-fair-500" />Remove current logo</label>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+
+  <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+    <div class="flex items-start gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-violet-50/50 px-5 py-5 sm:px-7">
+      <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-violet-50 text-violet-700" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v3m0 12v3M3 12h3m12 0h3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1m0-12.8-2.1 2.1m-8.6 8.6-2.1 2.1"/><circle cx="12" cy="12" r="4"/></svg></span>
+      <div>
+      <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-violet-700">02 · First impression</p>
+      <h2 class="mt-1 text-lg font-bold text-slate-950">Hero section</h2>
+      <p class="mt-1 text-sm text-slate-500">Set the headline, introduction, buttons, and optional banner image visitors see first.</p>
+      </div>
+    </div>
+    <div class="grid gap-5 p-5 md:grid-cols-2 sm:p-7">
+      <div>
+        <label for="heroEyebrow" class="mb-1.5 block text-sm font-semibold text-slate-700">Eyebrow label</label>
+        <input id="heroEyebrow" name="heroEyebrow" value="{{content.hero.eyebrow}}" maxlength="100" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroTitleLead" class="mb-1.5 block text-sm font-semibold text-slate-700">Headline — first line</label>
+        <input id="heroTitleLead" name="heroTitleLead" value="{{content.hero.titleLead}}" maxlength="100" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroTitleAccent" class="mb-1.5 block text-sm font-semibold text-slate-700">Headline — highlighted line</label>
+        <input id="heroTitleAccent" name="heroTitleAccent" value="{{content.hero.titleAccent}}" maxlength="100" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div class="md:col-span-2">
+        <label for="heroDescription" class="mb-1.5 block text-sm font-semibold text-slate-700">Introduction</label>
+        <textarea id="heroDescription" name="heroDescription" rows="3" maxlength="600" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500">{{content.hero.description}}</textarea>
+      </div>
+      <div>
+        <label for="heroPrimaryLabel" class="mb-1.5 block text-sm font-semibold text-slate-700">Primary button label</label>
+        <input id="heroPrimaryLabel" name="heroPrimaryLabel" value="{{content.hero.primaryLabel}}" maxlength="50" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroPrimaryHref" class="mb-1.5 block text-sm font-semibold text-slate-700">Primary button link</label>
+        <input id="heroPrimaryHref" name="heroPrimaryHref" value="{{content.hero.primaryHref}}" maxlength="255" required placeholder="/register" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroSecondaryLabel" class="mb-1.5 block text-sm font-semibold text-slate-700">Secondary button label</label>
+        <input id="heroSecondaryLabel" name="heroSecondaryLabel" value="{{content.hero.secondaryLabel}}" maxlength="50" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroSecondaryHref" class="mb-1.5 block text-sm font-semibold text-slate-700">Secondary button link</label>
+        <input id="heroSecondaryHref" name="heroSecondaryHref" value="{{content.hero.secondaryHref}}" maxlength="255" required placeholder="#process" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroHighlightOne" class="mb-1.5 block text-sm font-semibold text-slate-700">Platform highlight 1</label>
+        <input id="heroHighlightOne" name="heroHighlightOne" value="{{content.hero.highlightOne}}" maxlength="60" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroHighlightTwo" class="mb-1.5 block text-sm font-semibold text-slate-700">Platform highlight 2</label>
+        <input id="heroHighlightTwo" name="heroHighlightTwo" value="{{content.hero.highlightTwo}}" maxlength="60" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div>
+        <label for="heroHighlightThree" class="mb-1.5 block text-sm font-semibold text-slate-700">Platform highlight 3</label>
+        <input id="heroHighlightThree" name="heroHighlightThree" value="{{content.hero.highlightThree}}" maxlength="60" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+      </div>
+      <div class="md:col-span-2">
+        <label for="heroImage" class="mb-1.5 block text-sm font-semibold text-slate-700">Hero banner image <span class="font-normal text-slate-500">(optional, JPG/PNG/WebP, up to 5 MB)</span></label>
+        <input id="heroImage" name="heroImage" type="file" accept="image/jpeg,image/png,image/webp" class="block w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-slate-100 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-slate-700" />
+        {{#if content.hero.image}}
+        <div class="mt-3 flex flex-wrap items-center gap-4">
+          <img src="{{content.hero.image}}" alt="Current homepage hero image" class="h-20 w-40 rounded-xl border border-slate-200 object-cover" />
+          <label class="inline-flex items-center gap-2 text-sm text-slate-600"><input type="checkbox" name="removeHeroImage" value="true" class="rounded border-slate-300 text-fair-800 focus:ring-fair-500" />Remove current banner</label>
+        </div>
+        {{/if}}
+      </div>
+    </div>
+  </section>
+
+  <section class="overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+    <div class="flex items-start gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-amber-50/50 px-5 py-5 sm:px-7">
+      <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-amber-50 text-amber-700" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/><circle cx="7" cy="6" r="1" fill="currentColor"/><circle cx="7" cy="12" r="1" fill="currentColor"/><circle cx="7" cy="18" r="1" fill="currentColor"/></svg></span>
+      <div>
+      <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-amber-700">03 · Section management</p>
+      <h2 class="mt-1 text-lg font-bold text-slate-950">Homepage sections</h2>
+      <p class="mt-1 text-sm text-slate-500">Edit each section’s copy, hide it when it is not needed, and set its display order.</p>
+      </div>
+    </div>
+
+    <div class="space-y-4 p-5 sm:p-7">
+      <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-blue-200 sm:p-5">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-4">
+          <div><h3 class="font-semibold text-slate-900">Who it's for</h3><p class="mt-1 text-xs text-slate-500">Role descriptions shown to visitors</p></div>
+          <div class="flex items-center gap-4">
+            <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700"><input type="checkbox" name="rolesVisible" value="true" {{#if content.sections.roles.visible}}checked{{/if}} class="rounded border-slate-300 text-fair-800 focus:ring-fair-500" />Visible</label>
+            <label class="flex items-center gap-2 text-sm text-slate-600">Order
+              <select name="rolesOrder" class="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm">
+                <option value="1" {{#if (eq content.sections.roles.order 1)}}selected{{/if}}>1</option>
+                <option value="2" {{#if (eq content.sections.roles.order 2)}}selected{{/if}}>2</option>
+                <option value="3" {{#if (eq content.sections.roles.order 3)}}selected{{/if}}>3</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Eyebrow</label><input name="rolesEyebrow" value="{{content.sections.roles.eyebrow}}" maxlength="100" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Heading</label><input name="rolesTitle" value="{{content.sections.roles.title}}" maxlength="120" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div class="md:col-span-2"><label class="mb-1 block text-xs font-semibold text-slate-600">Section introduction</label><textarea name="rolesDescription" rows="2" maxlength="400" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.roles.description}}</textarea></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Administrator title</label><input name="rolesAdministratorTitle" value="{{content.sections.roles.administratorTitle}}" maxlength="60" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Administrator description</label><textarea name="rolesAdministratorDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.roles.administratorDescription}}</textarea></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Organizer title</label><input name="rolesOrganizerTitle" value="{{content.sections.roles.organizerTitle}}" maxlength="60" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Organizer description</label><textarea name="rolesOrganizerDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.roles.organizerDescription}}</textarea></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Judge title</label><input name="rolesJudgeTitle" value="{{content.sections.roles.judgeTitle}}" maxlength="60" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Judge description</label><textarea name="rolesJudgeDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.roles.judgeDescription}}</textarea></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Tabulator title</label><input name="rolesTabulatorTitle" value="{{content.sections.roles.tabulatorTitle}}" maxlength="60" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Tabulator description</label><textarea name="rolesTabulatorDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.roles.tabulatorDescription}}</textarea></div>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-violet-200 sm:p-5">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-4">
+          <div><h3 class="font-semibold text-slate-900">How it works</h3><p class="mt-1 text-xs text-slate-500">Four-step judging and tabulation process</p></div>
+          <div class="flex items-center gap-4">
+            <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700"><input type="checkbox" name="processVisible" value="true" {{#if content.sections.process.visible}}checked{{/if}} class="rounded border-slate-300 text-fair-800 focus:ring-fair-500" />Visible</label>
+            <label class="flex items-center gap-2 text-sm text-slate-600">Order
+              <select name="processOrder" class="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm">
+                <option value="1" {{#if (eq content.sections.process.order 1)}}selected{{/if}}>1</option>
+                <option value="2" {{#if (eq content.sections.process.order 2)}}selected{{/if}}>2</option>
+                <option value="3" {{#if (eq content.sections.process.order 3)}}selected{{/if}}>3</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Eyebrow</label><input name="processEyebrow" value="{{content.sections.process.eyebrow}}" maxlength="100" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Heading</label><input name="processTitle" value="{{content.sections.process.title}}" maxlength="120" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div class="md:col-span-2"><label class="mb-1 block text-xs font-semibold text-slate-600">Section introduction</label><textarea name="processDescription" rows="2" maxlength="400" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.process.description}}</textarea></div>
+          <div class="md:col-span-2 grid gap-4 lg:grid-cols-2">
+            <fieldset class="space-y-3 rounded-xl border border-slate-200 bg-slate-50/80 p-4"><legend class="px-1 text-xs font-bold uppercase tracking-wide text-slate-500">Step 1</legend>
+              <input aria-label="Step 1 label" name="processPrepareLabel" value="{{content.sections.process.prepareLabel}}" maxlength="40" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <input aria-label="Step 1 heading" name="processPrepareTitle" value="{{content.sections.process.prepareTitle}}" maxlength="80" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <textarea aria-label="Step 1 description" name="processPrepareDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">{{content.sections.process.prepareDescription}}</textarea>
+            </fieldset>
+            <fieldset class="space-y-3 rounded-xl border border-slate-200 bg-slate-50/80 p-4"><legend class="px-1 text-xs font-bold uppercase tracking-wide text-slate-500">Step 2</legend>
+              <input aria-label="Step 2 label" name="processEvaluateLabel" value="{{content.sections.process.evaluateLabel}}" maxlength="40" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <input aria-label="Step 2 heading" name="processEvaluateTitle" value="{{content.sections.process.evaluateTitle}}" maxlength="80" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <textarea aria-label="Step 2 description" name="processEvaluateDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">{{content.sections.process.evaluateDescription}}</textarea>
+            </fieldset>
+            <fieldset class="space-y-3 rounded-xl border border-slate-200 bg-slate-50/80 p-4"><legend class="px-1 text-xs font-bold uppercase tracking-wide text-slate-500">Step 3</legend>
+              <input aria-label="Step 3 label" name="processVerifyLabel" value="{{content.sections.process.verifyLabel}}" maxlength="40" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <input aria-label="Step 3 heading" name="processVerifyTitle" value="{{content.sections.process.verifyTitle}}" maxlength="80" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <textarea aria-label="Step 3 description" name="processVerifyDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">{{content.sections.process.verifyDescription}}</textarea>
+            </fieldset>
+            <fieldset class="space-y-3 rounded-xl border border-slate-200 bg-slate-50/80 p-4"><legend class="px-1 text-xs font-bold uppercase tracking-wide text-slate-500">Step 4</legend>
+              <input aria-label="Step 4 label" name="processPublishLabel" value="{{content.sections.process.publishLabel}}" maxlength="40" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <input aria-label="Step 4 heading" name="processPublishTitle" value="{{content.sections.process.publishTitle}}" maxlength="80" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" />
+              <textarea aria-label="Step 4 description" name="processPublishDescription" rows="2" maxlength="250" required class="w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm">{{content.sections.process.publishDescription}}</textarea>
+            </fieldset>
+          </div>
+        </div>
+      </article>
+
+      <article class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm transition hover:border-amber-200 sm:p-5">
+        <div class="mb-5 flex flex-wrap items-center justify-between gap-4">
+          <div><h3 class="font-semibold text-slate-900">Closing call to action</h3><p class="mt-1 text-xs text-slate-500">The final sign-up prompt on the homepage</p></div>
+          <div class="flex items-center gap-4">
+            <label class="inline-flex items-center gap-2 text-sm font-medium text-slate-700"><input type="checkbox" name="callToActionVisible" value="true" {{#if content.sections.callToAction.visible}}checked{{/if}} class="rounded border-slate-300 text-fair-800 focus:ring-fair-500" />Visible</label>
+            <label class="flex items-center gap-2 text-sm text-slate-600">Order
+              <select name="callToActionOrder" class="rounded-lg border border-slate-200 bg-white px-2.5 py-1.5 text-sm">
+                <option value="1" {{#if (eq content.sections.callToAction.order 1)}}selected{{/if}}>1</option>
+                <option value="2" {{#if (eq content.sections.callToAction.order 2)}}selected{{/if}}>2</option>
+                <option value="3" {{#if (eq content.sections.callToAction.order 3)}}selected{{/if}}>3</option>
+              </select>
+            </label>
+          </div>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Eyebrow</label><input name="ctaEyebrow" value="{{content.sections.callToAction.eyebrow}}" maxlength="100" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Heading</label><input name="ctaTitle" value="{{content.sections.callToAction.title}}" maxlength="120" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div class="md:col-span-2"><label class="mb-1 block text-xs font-semibold text-slate-600">Description</label><textarea name="ctaDescription" rows="2" maxlength="400" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm">{{content.sections.callToAction.description}}</textarea></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Button label</label><input name="ctaButtonLabel" value="{{content.sections.callToAction.buttonLabel}}" maxlength="50" required class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+          <div><label class="mb-1 block text-xs font-semibold text-slate-600">Button link</label><input name="ctaButtonHref" value="{{content.sections.callToAction.buttonHref}}" maxlength="255" required placeholder="/register" class="w-full rounded-lg border border-slate-200 px-3 py-2 text-sm" /></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <div class="sticky bottom-4 z-20 flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-slate-200/80 bg-white/95 p-4 shadow-xl shadow-slate-900/10 backdrop-blur">
+    <p class="hidden items-center gap-2 text-sm text-slate-500 sm:inline-flex"><span class="h-2 w-2 rounded-full bg-amber-400"></span>Changes go live after you save.</p>
+    <div class="ml-auto flex flex-wrap gap-3">
+      <button type="submit" formaction="/admin/homepage/preview" formmethod="POST" formtarget="_blank" class="inline-flex items-center gap-2 rounded-xl border border-slate-300 bg-white px-4 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-slate-400 hover:bg-slate-50"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.5 12s3.5-7 9.5-7 9.5 7 9.5 7-3.5 7-9.5 7-9.5-7-9.5-7Z"/><circle cx="12" cy="12" r="3"/></svg>Preview changes</button>
+      <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-fair-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-fair-700"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13 9 17 19 7"/></svg>Save and publish</button>
+    </div>
+  </div>
+</form>
+
+<section class="mt-8 overflow-hidden rounded-2xl border border-slate-200/80 bg-white shadow-sm">
+  <div class="flex items-start gap-4 border-b border-slate-100 bg-gradient-to-r from-white to-rose-50/50 px-5 py-5 sm:px-7">
+    <span class="flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-700" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="m10 9 5 3-5 3V9Z"/></svg></span>
+    <div>
+    <p class="text-[10px] font-bold uppercase tracking-[0.16em] text-rose-700">04 · Homepage media</p>
+    <h2 class="mt-1 text-lg font-bold text-slate-950">Video trailers</h2>
+    <p class="mt-1 text-sm text-slate-500">Upload an MP4/WebM video (up to 100 MB) or add a public YouTube/Vimeo link. Video details are saved in the database and shown on the homepage.</p>
+    </div>
+  </div>
+
+  <div class="p-5 sm:p-7">
+  <form method="POST" action="/admin/homepage/videos" enctype="multipart/form-data" class="grid gap-4 rounded-2xl border border-slate-200 bg-slate-50/60 p-4 sm:p-5 md:grid-cols-2">
+    <div>
+      <label for="videoTitle" class="mb-1.5 block text-sm font-semibold text-slate-700">Video title</label>
+      <input id="videoTitle" name="title" maxlength="120" required class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+    </div>
+    <div>
+      <label for="videoUrl" class="mb-1.5 block text-sm font-semibold text-slate-700">YouTube or Vimeo URL <span class="font-normal text-slate-500">(use this or upload a file)</span></label>
+      <input id="videoUrl" name="videoUrl" type="url" maxlength="2048" placeholder="https://www.youtube.com/watch?v=..." class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500" />
+    </div>
+    <div class="md:col-span-2">
+      <label for="videoFile" class="mb-1.5 block text-sm font-semibold text-slate-700">Video file <span class="font-normal text-slate-500">(MP4 or WebM, up to 100 MB; use this or a link)</span></label>
+      <input id="videoFile" name="videoFile" type="file" accept="video/mp4,video/webm,.mp4,.webm" class="block w-full rounded-xl border border-dashed border-slate-300 bg-white px-3.5 py-3 text-sm text-slate-600 file:mr-4 file:rounded-lg file:border-0 file:bg-fair-800 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white" />
+    </div>
+    <div class="md:col-span-2">
+      <label for="videoDescription" class="mb-1.5 block text-sm font-semibold text-slate-700">Description <span class="font-normal text-slate-500">(optional)</span></label>
+      <textarea id="videoDescription" name="description" rows="2" maxlength="1000" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500"></textarea>
+    </div>
+    <div class="md:col-span-2">
+      <button type="submit" class="inline-flex items-center gap-2 rounded-xl bg-fair-800 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-fair-700"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><path stroke-linecap="round" d="M12 5v14M5 12h14"/></svg>Add video trailer</button>
+    </div>
+  </form>
+
+  {{#if homepageVideos}}
+  <div class="mt-7 grid gap-3 border-t border-slate-100 pt-6">
+    {{#each homepageVideos}}
+    <article class="flex flex-col gap-4 rounded-2xl border border-slate-200 bg-white p-4 transition hover:border-slate-300 hover:shadow-sm sm:flex-row sm:items-center sm:justify-between">
+      <div class="flex min-w-0 items-start gap-3">
+        <span class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-rose-50 text-rose-700" aria-hidden="true"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="m10 9 5 3-5 3V9Z"/></svg></span>
+        <div class="min-w-0">
+        <h3 class="font-semibold text-slate-900">{{this.title}}</h3>
+        {{#if this.fileUrl}}<p class="mt-1 text-sm text-slate-500">Uploaded video file</p>{{else}}<p class="mt-1 break-all text-sm text-slate-500">{{this.videoUrl}}</p>{{/if}}
+        {{#if this.description}}<p class="mt-1 text-sm text-slate-600">{{this.description}}</p>{{/if}}
+        </div>
+      </div>
+      <form method="POST" action="/admin/homepage/videos/{{this.id}}/delete" onsubmit="return confirm('Remove this video from the homepage?')">
+        <button type="submit" class="shrink-0 rounded-xl border border-rose-200 px-3.5 py-2 text-sm font-semibold text-rose-700 transition hover:bg-rose-50">Archive video</button>
+      </form>
+    </article>
+    {{/each}}
+  </div>
+  {{else}}
+  <div class="mt-6 flex items-center gap-3 rounded-xl border border-dashed border-slate-300 bg-slate-50 px-4 py-5 text-sm text-slate-600"><span class="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-lg bg-white text-slate-400 shadow-sm"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path stroke-linecap="round" stroke-linejoin="round" d="m10 9 5 3-5 3V9Z"/></svg></span>Wala pang video trailer. Add a YouTube or Vimeo link above.</div>
+  {{/if}}
+  </div>
+</section>
+{{> app-end}}

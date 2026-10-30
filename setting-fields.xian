@@ -1,0 +1,6 @@
+<label class="mb-1 block text-sm font-semibold text-slate-700">Setting key</label>
+<input name="settingKey" required class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Value</label>
+<input name="settingValue" class="mb-4 w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" />
+<label class="mb-1 block text-sm font-semibold text-slate-700">Description</label>
+<textarea name="description" class="w-full rounded-xl border border-slate-200 px-3.5 py-2.5 text-sm outline-none focus:border-fair-500 focus:ring-2 focus:ring-fair-500/20" rows="3"></textarea>
